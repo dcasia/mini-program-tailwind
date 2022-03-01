@@ -1,0 +1,29 @@
+{
+  "name": "tailwind-for-mini-program-webpack-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcasia/tailwind-for-mini-program-webpack-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcasia/tailwind-for-mini-program-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/dcasia/tailwind-for-mini-program-webpack-plugin#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
+    "eslint-plugin-import": "^2.25.4",
+    "webpack": "^5.69.1"
+  }
+}
