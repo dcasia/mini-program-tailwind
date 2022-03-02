@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts --fix",
+    "build": "rollup --config rollup.config.ts"
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,14 @@
   },
   "homepage": "https://github.com/dcasia/tailwind-for-mini-program-webpack-plugin#readme",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
     "eslint-plugin-import": "^2.25.4",
+    "rollup": "^2.68.0",
     "webpack": "^5.69.1"
   }
 }
