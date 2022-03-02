@@ -1,46 +1,86 @@
-import { Compiler } from 'webpack'
+import { Compiler, WebpackPluginInstance } from 'webpack'
 
-const pluginName = 'tailwind-for-mini-program'
+interface Options {
+    convertToRpx: boolean,
+}
 
-export class TailwindForMiniProgram {
+export class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
+
+    static pluginName = 'mini-program-tailwind-webpack-plugin'
+    private defaultOptions: Options = {
+        convertToRpx: true,
+    }
+
+    private options: Options
+
+    constructor(options: Options) {
+        this.options = Object.assign({}, options, this.defaultOptions)
+    }
 
     apply(compiler: Compiler) {
 
-        const { ConcatSource } = compiler.webpack.sources
+        const { webpack } = compiler
+        const { sources, Compilation } = webpack
+        const { ConcatSource } = sources
 
-        compiler.hooks.emit.tapPromise(pluginName, async compilation => {
+        compiler.hooks.thisCompilation.tap(
+            MiniProgramTailwindWebpackPlugin.pluginName,
+            compilation => {
 
-            const entries = Object.entries(compilation.assets)
+                compilation.hooks.processAssets.tap(
+                    {
+                        name: MiniProgramTailwindWebpackPlugin.pluginName,
 
-            for (let index = 0; index < entries.length; index++) {
+                        /*
+                         * Using one of the later asset processing stages to ensure
+                         * that all assets were already added to the compilation by other plugins.
+                         */
+                        stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
+                    },
+                    assets => {
 
-                const [ file, originalSource ] = entries[ index ]
+                        const entries = Object.entries(assets)
 
-                // if (cssMatcher(file)) {
+                        console.log(entries)
 
-                //     const rawSource = originalSource.source().toString()
+                        // For (let index = 0; index < entries.length; index++) {
 
-                //     const css = styleHandler(rawSource, {
-                //         isMainChunk: mainCssChunkMatcher(file, 'mpx'),
-                //     })
+                        //     Const [ file, originalSource ] = entries[ index ]
 
-                //     const source = new ConcatSource(css)
+                        //     If (cssMatcher(file)) {
 
-                //     compilation.updateAsset(file, source)
+                        //         Const rawSource = originalSource.source().toString()
 
-                // } else if (htmlMatcher(file)) {
+                        /*
+                         *         Const css = styleHandler(rawSource, {
+                         *             isMainChunk: mainCssChunkMatcher(file, 'mpx'),
+                         *         })
+                         */
 
-                //     const rawSource = originalSource.source().toString()
-                //     const wxml = templeteHandler(rawSource)
-                //     const source = new ConcatSource(wxml)
+                        //         Const source = new ConcatSource(css)
 
-                //     compilation.updateAsset(file, source)
+                        //         Compilation.updateAsset(file, source)
 
-                // }
+                        //     } else if (htmlMatcher(file)) {
 
-            }
+                        /*
+                         *         Const rawSource = originalSource.source().toString()
+                         *         const wxml = templeteHandler(rawSource)
+                         *         const source = new ConcatSource(wxml)
+                         */
 
-        })
+                        //         Compilation.updateAsset(file, source)
+
+                        //     }
+
+                        // }
+
+                    },
+
+                )
+
+            },
+        )
 
     }
 
