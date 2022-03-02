@@ -50,9 +50,13 @@ export class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
                                 handledSource = hanldeTemplate(rawSource)
                             }
 
-                            const source = new ConcatSource(handledSource)
+                            if (handledSource) {
 
-                            compilation.updateAsset(pathname, source)
+                                const source = new ConcatSource(handledSource)
+
+                                compilation.updateAsset(pathname, source)
+
+                            }
 
                         }
 

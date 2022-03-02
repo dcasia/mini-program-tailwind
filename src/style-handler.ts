@@ -1,4 +1,5 @@
 import postcss from 'postcss'
+import { FileType } from './enum'
 import { handleCharacters } from './utilities'
 
 export function handleStyle(rawSource: string) {
@@ -8,7 +9,7 @@ export function handleStyle(rawSource: string) {
     root.walk(node => {
 
         if (node.type === 'rule') {
-            node.selector = handleCharacters(node.selector)
+            node.selector = handleCharacters(node.selector, FileType.Style)
         }
 
     })

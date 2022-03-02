@@ -3,6 +3,7 @@ import { handleCharacters } from './utilities'
 import { parseExpression } from '@babel/parser'
 import traverse from '@babel/traverse'
 import generate from '@babel/generator'
+import { FileType } from './enum'
 
 export function hanldeTemplate(rawSource: string) {
 
@@ -20,7 +21,7 @@ export function hanldeTemplate(rawSource: string) {
              */
 
             if (node.attributes.class) {
-                node.attributes.class = handleCharacters(node.attributes.class)
+                node.attributes.class = handleCharacters(node.attributes.class, FileType.Template)
             }
 
         }

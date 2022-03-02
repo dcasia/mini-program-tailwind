@@ -1,29 +1,37 @@
+import { FileType } from './enum'
+
 export function isStyleFile(filename) {
-    return filename => /.+\.(?:wx|ac|jx|tt|q|c)ss$/.test(filename)
+    return /.+\.(?:wx|ac|jx|tt|q|c)ss$/.test(filename)
 }
 
 export function isTemplateFile(filename) {
-    return filename => /.+\.(wx|ax|jx|ks|tt|q)ml$/.test(filename)
+    return /.+\.(wx|ax|jx|ks|tt|q)ml$/.test(filename)
 }
 
 export const specialCharactersMap = {
     [ '[' ]: '_l_',
-    [ '\\' ]: '_b_',
+    [ ']' ]: '_r_',
     [ '(' ]: '_p_',
     [ ')' ]: '_q_',
     [ '#' ]: '_h_',
     [ '!' ]: '_i_',
     [ '/' ]: '_s_',
     [ '.' ]: '_d_',
-    [ '\\w:\\w' ]: '_c_',
+    // eslint-disable-next-line no-useless-escape
+    [ '\w:\\w' ]: '_c_',
 }
 
-export function handleCharacters(content) {
+export const backslasheMap = {
+    [ FileType.Style ]: '\\\\\\',
+    [ FileType.Template ]: '\\',
+}
+
+export function handleCharacters(content, type: FileType) {
 
     for (const from in specialCharactersMap) {
 
         const to = specialCharactersMap[ from ]
-        const regExp = new RegExp(`\\${ from }`, 'g')
+        const regExp = new RegExp(backslasheMap[ type ] + from, 'g')
 
         /**
          * Todo

@@ -1,8 +1,11 @@
 {
-  "name": "tailwind-for-mini-program-webpack-plugin",
-  "version": "1.0.0",
+  "name": "@dcasia/mini-program-tailwind-webpack-plugin",
+  "version": "1.0.2",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/index.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts --fix",
