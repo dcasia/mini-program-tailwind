@@ -1,4 +1,7 @@
 import { Compiler, WebpackPluginInstance } from 'webpack'
+import { handleStyle } from './style-handler'
+import { hanldeTemplate } from './template-hanlder'
+import { isStyleFile, isTemplateFile } from './utilities'
 
 interface Options {
     convertToRpx: boolean,
@@ -30,50 +33,28 @@ export class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
                 compilation.hooks.processAssets.tap(
                     {
                         name: MiniProgramTailwindWebpackPlugin.pluginName,
-
-                        /*
-                         * Using one of the later asset processing stages to ensure
-                         * that all assets were already added to the compilation by other plugins.
-                         */
                         stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
                     },
                     assets => {
 
-                        const entries = Object.entries(assets)
+                        for (const pathname in assets) {
 
-                        console.log(entries)
+                            const originalSource = assets[ pathname ]
+                            const rawSource = originalSource.source().toString()
 
-                        // For (let index = 0; index < entries.length; index++) {
+                            let handledSource = ''
 
-                        //     Const [ file, originalSource ] = entries[ index ]
+                            if (isStyleFile(pathname)) {
+                                handledSource = handleStyle(rawSource)
+                            } else if (isTemplateFile(pathname)) {
+                                handledSource = hanldeTemplate(rawSource)
+                            }
 
-                        //     If (cssMatcher(file)) {
+                            const source = new ConcatSource(handledSource)
 
-                        //         Const rawSource = originalSource.source().toString()
+                            compilation.updateAsset(pathname, source)
 
-                        /*
-                         *         Const css = styleHandler(rawSource, {
-                         *             isMainChunk: mainCssChunkMatcher(file, 'mpx'),
-                         *         })
-                         */
-
-                        //         Const source = new ConcatSource(css)
-
-                        //         Compilation.updateAsset(file, source)
-
-                        //     } else if (htmlMatcher(file)) {
-
-                        /*
-                         *         Const rawSource = originalSource.source().toString()
-                         *         const wxml = templeteHandler(rawSource)
-                         *         const source = new ConcatSource(wxml)
-                         */
-
-                        //         Compilation.updateAsset(file, source)
-
-                        //     }
-
-                        // }
+                        }
 
                     },
 
