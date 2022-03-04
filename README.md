@@ -12,7 +12,7 @@ A webpack plugin that can make tailwind css and windi css framework compatiable 
 
 2. Why mini program is so special when it comes to tailwind/windi?
 
-   Well in terms of the business, there is no doubt mini program creates incredible influence in China market but technically speaking the way it provides for developers to build it is conservative and restrictive and out of sync with international technical community. For instance the css selector in mini program couldn't support `*` `:hover` etc and also any escaped selecor names `\[` `\]` `\!` `\.` etc which are the critical elements that tailwind/windi uses to generate class names.
+   Well in terms of the business, there is no doubt mini program creates incredible influence in China market but technically speaking the way it provides for developers to build is conservative and restrictive and out of sync with international technical community. For instance the css selector in mini program couldn't support `*` `:hover` etc and also any escaped selecor names `\[` `\]` `\!` `\.` etc which are the critical elements that tailwind/windi uses to generate class names.
 
 3. How does this plugin make tailwind/windi compatible with mini program?
 
@@ -26,7 +26,7 @@ A webpack plugin that can make tailwind css and windi css framework compatiable 
 | ----------------------------------------------------- | :-------: | :-------------: |
 | Regular: h-10, text-white                             |     ✅     |        ✅        |
 | Responsive: md:p-2                                    |     ❌     |        ✅        |
-| Impotant: !p-1                                        |     ❌     |        ✅        |
+| Important: !p-1                                       |     ❌     |        ✅        |
 | Variants: dark:bg-gray-800                            |     ❌     |        ✅        |
 | Variants groups: hover:(bg-gray-400 font-medium)      |     ❌     |        ✅        |
 | Fraction: translate-x-1/2, w-8.5                      |     ❌     |        ✅        |
