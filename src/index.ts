@@ -1,6 +1,6 @@
 import { Compiler, WebpackPluginInstance } from 'webpack'
 import { handleStyle } from './style-handler'
-import { hanldeTemplate } from './template-hanlder'
+import { handleTemplate } from './template-handler'
 import { isStyleFile, isTemplateFile } from './utilities'
 
 interface Options {
@@ -47,7 +47,7 @@ export class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
                             if (isStyleFile(pathname)) {
                                 handledSource = handleStyle(rawSource)
                             } else if (isTemplateFile(pathname)) {
-                                handledSource = hanldeTemplate(rawSource)
+                                handledSource = handleTemplate(rawSource)
                             }
 
                             if (handledSource) {

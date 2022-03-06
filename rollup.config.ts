@@ -1,5 +1,6 @@
 import { defineConfig } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
+import commonjs from '@rollup/plugin-commonjs'
 
 export default defineConfig({
     input: 'src/index.ts',
@@ -7,5 +8,5 @@ export default defineConfig({
         file: 'dist/index.js',
         format: 'cjs',
     },
-    plugins: [ typescript() ],
+    plugins: [ commonjs(), typescript() ],
 })

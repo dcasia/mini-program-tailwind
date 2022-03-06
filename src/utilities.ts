@@ -9,16 +9,15 @@ export function isTemplateFile(filename) {
 }
 
 export const specialCharactersMap = {
-    [ '[' ]: '_l_',
-    [ ']' ]: '_r_',
-    [ '(' ]: '_p_',
-    [ ')' ]: '_q_',
-    [ '#' ]: '_h_',
-    [ '!' ]: '_i_',
-    [ '/' ]: '_s_',
-    [ '.' ]: '_d_',
-    // eslint-disable-next-line no-useless-escape
-    [ '\w:\\w' ]: '_c_',
+    [ '[' ]: '-',
+    [ ']' ]: '-',
+    [ '(' ]: '-',
+    [ ')' ]: '-',
+    [ '#' ]: '-h-',
+    [ '!' ]: '-i-',
+    [ '/' ]: '-s-',
+    [ '.' ]: '-d-',
+    [ ':' ]: '-c-',
 }
 
 export const backslasheMap = {
@@ -31,14 +30,7 @@ export function handleCharacters(content, type: FileType) {
     for (const from in specialCharactersMap) {
 
         const to = specialCharactersMap[ from ]
-        const regExp = new RegExp(backslasheMap[ type ] + from, 'g')
-
-        /**
-         * Todo
-         * To enhance the precision for hanlding different cases we need to do some special detections
-         * E.g. We need to only match the ':' character in the case 'mobile:h-12' instead of the case '{{a ? b : c}}'
-         * To do this we need to make sure the replacement will only happen inside quotes rather than curly braces
-         */
+        const regExp = new RegExp(`${ backslasheMap[ type ] }${ from }`, 'g')
 
         content = content.replace(regExp, to)
 

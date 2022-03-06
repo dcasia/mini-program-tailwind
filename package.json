@@ -1,6 +1,6 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts --fix",
-    "build": "rollup --config rollup.config.ts"
+    "build": "rollup --config rollup.config.ts",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/dcasia/tailwind-for-mini-program-webpack-plugin#readme",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-typescript": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
@@ -32,9 +34,7 @@
     "rollup": "^2.68.0"
   },
   "dependencies": {
-    "@babel/generator": "^7.17.3",
-    "@babel/parser": "^7.17.3",
-    "@babel/traverse": "^7.17.3",
+    "@babel/core": "^7.17.5",
     "@vivaxy/wxml": "^2.1.0",
     "postcss": "^8.4.7",
     "webpack": "^5.69.1"
