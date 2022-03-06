@@ -31,8 +31,8 @@ export default {
     include: ['src/**/*.{css,html,mpx}'],
     // 忽略部分文件夹
     exclude: ['node_modules', '.git', 'dist']
-	}
-	//...
+  }
+  //...
 }
 ```
 
@@ -66,6 +66,7 @@ module.exports = {
 
 ### 完成
 开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
+
 [以上过程完整示范](./tree/development/examples/mpx)
 
 
