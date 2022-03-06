@@ -1,6 +1,6 @@
 const { resolve } = require('./utils')
 const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
-const { MiniProgramTailwindWebpackPlugin } = require("@dcasia/mini-program-tailwind-webpack-plugin")
+const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin")
 
 
 module.exports = {

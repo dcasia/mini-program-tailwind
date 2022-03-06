@@ -7,7 +7,7 @@ interface Options {
     convertToRpx: boolean,
 }
 
-export class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
+export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
 
     static pluginName = 'mini-program-tailwind-webpack-plugin'
     private defaultOptions: Options = {
