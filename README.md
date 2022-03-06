@@ -4,6 +4,72 @@
 
 A webpack plugin that can make tailwind css and windi css framework compatiable with WeChat mini program.
 
+目前仅支持微信小程序
+
+# 快速开始
+
+## 基于原生小程序
+
+待更新...
+
+## 基于 MPX 框架
+
+[MPX](https://mpxjs.cn/), 一款具有优秀开发体验和深度性能优化的增强型跨端小程序框架。
+
+### 安装 Windi CSS 与 windicss-webpack-plugin
+
+依照 Windi CSS [官方文档](https://windicss.org/integrations/webpack.html) 中陈述步骤的进行
+
+### 更新 Windi CSS 配置文件
+
+```javascript
+//windi.config.js
+export default {
+  //...
+  extract: {
+    // 将 .mpx 文件纳入范围
+    include: ['src/**/*.{css,html,mpx}'],
+    // 忽略部分文件夹
+    exclude: ['node_modules', '.git', 'dist']
+	}
+	//...
+}
+```
+
+### 安装 @dcasia/mini-program-tailwind-webpack-plugin
+
+```sh
+npm i @dcasia/mini-program-tailwind-webpack-plugin --save-dev
+```
+
+### 更新 MPX 项目中的 webpack 配置文件
+
+```javascript
+//webpack.base.conf.js
+const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
+const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin")
+
+module.exports = {
+  //...
+  plugins: [
+    new WindiCSSWebpackPlugin(),
+    new MiniProgramTailwindWebpackPlugin()
+  ]
+}
+```
+
+### 在 app.mpx 中引入 Windi CSS 的产物
+
+```html
+<style src="windi-utilities.css"></style>
+```
+
+### 完成
+开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
+[以上过程完整示范](./tree/development/examples/mpx)
+
+
+
 ## FAQ
 
 1. Can't tailwind/windi be compatible with mini program? What are the restrictions there?
