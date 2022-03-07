@@ -18,7 +18,7 @@ A webpack plugin that can make tailwind css and windi css framework compatiable 
 
 ### 安装 Windi CSS 与 windicss-webpack-plugin
 
-依照 Windi CSS [官方文档](https://windicss.org/integrations/webpack.html) 中陈述步骤的进行
+依照 Windi CSS [官方文档](https://windicss.org/integrations/webpack.html) 中陈述的步骤进行
 
 ### 更新 Windi CSS 配置文件
 
@@ -83,7 +83,7 @@ module.exports = {
 
 3. How does this plugin make tailwind/windi compatible with mini program?
 
-   Behind the scene it silently replace all unsupported selector names in mini program when you are developing or building your project by lerverging the ability of Webpack, Postcss, WXML parser and Babel etc.
+   Behind the scene it silently replace all unsupported selector names in mini program when you are developing or building your project by leveraging the ability of Webpack, Postcss, WXML parser and Babel etc.
 
 
 
