@@ -1,8 +1,8 @@
 # Mini program Tailwind/Windi CSS Webpack plugin
 
-A webpack plugin that can make tailwind css and windi css framework compatiable with WeChat mini program.
+A webpack plugin that can make tailwind css and windi css framework compatiable with mini program.
 
-目前仅支持微信小程序且需要配合 Webpack 5 一起使用
+需要配合 Webpack 5 一起使用
 
 ## 介绍
 
