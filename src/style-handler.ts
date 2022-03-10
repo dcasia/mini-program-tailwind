@@ -1,19 +1,11 @@
 import postcss from 'postcss'
-import { FileType } from './enum'
-import { handleCharacters } from './utilities'
+import { transformSelector } from './postcss'
 
 export function handleStyle(rawSource: string) {
 
-    const root = postcss.parse(rawSource)
-
-    root.walk(node => {
-
-        if (node.type === 'rule') {
-            node.selector = handleCharacters(node.selector, FileType.Style)
-        }
-
-    })
-
-    return root.toString()
+    return postcss()
+        .use(transformSelector)
+        .process(rawSource)
+        .css
 
 }

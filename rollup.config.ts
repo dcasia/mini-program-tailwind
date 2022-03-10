@@ -8,5 +8,10 @@ export default defineConfig({
         file: 'dist/index.js',
         format: 'cjs',
     },
-    plugins: [ commonjs(), typescript() ],
+    plugins: [
+        commonjs(),
+        typescript({
+            exclude: [ 'examples/**' ],
+        }),
+    ],
 })
