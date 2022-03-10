@@ -16,4 +16,16 @@ export function transformSelector() {
 
 }
 
+export function transformValue() {
+
+    return {
+        postcssPlugin: 'transformValue',
+        Declaration(node) {
+            console.log(node.value)
+        },
+    }
+
+}
+
 transformSelector.postcss = true as const
+transformValue.postcss = true as const
