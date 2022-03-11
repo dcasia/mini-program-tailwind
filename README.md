@@ -10,7 +10,7 @@ A webpack plugin that can make tailwind css and windi css framework compatiable 
 
 为了突破这一限制，我们开发了这一款插件来帮助你在开发小程序时依然保持着与使用 Tailwind/Windi 开发 Web 应用时高度一致的开发体验，你不再需要关注哪些字符串不被支持而不得不换一种写法，而是继续按照 Tailwind/Windi 的官方语法继续编写你的小程序样式，其他工作则由这款插件静默处理。
 
-下一个版本会集成 rpx 值自动转换功能来支持将 Tailwind/Windi 配置文件以及自动值推导中的 rem 与 px 单位的值在生成结果中自动转换为 rpx 单位的值，来达到可以与 Web 项目重用同一份团队制定的主题配置文件的目的。
+此外，该插件还集成了 rpx 值自动转换的功能。该功能可以将 Tailwind/Windi 配置文件中以及源码中我们书写的的 rem 与 px 单位的值在生成结果中自动转换为 rpx 单位的值。这即可以让开发者重用在 Web 项目同一份团队制定的主题配置文件又可以享受到小程序的 responsive pixel 特性带来的便利。
 
 
 ## 快速开始
@@ -60,7 +60,10 @@ module.exports = {
   //...
   plugins: [
     new WindiCSSWebpackPlugin(),
-    new MiniProgramTailwindWebpackPlugin()
+    new MiniProgramTailwindWebpackPlugin({
+      enableRpx: true,
+      designWidth: 350
+    })
   ]
 }
 ```
@@ -76,6 +79,13 @@ module.exports = {
 
 [示例项目](./examples/mpx)
 
+
+## 可配置参数
+
+| Name        | Type    | Default | Description                                               |
+| ----------- | ------- | ------- | --------------------------------------------------------- |
+| enableRpx   | Boolean | True    | 是否开启自动转换至 rpx 单位值的功能                       |
+| designWidth | Number  | 350     | 设计稿的像素宽度值，该尺寸影响到 rpx 转换过程中的计算比率 |
 
 
 ## FAQ
@@ -105,7 +115,7 @@ module.exports = {
 | Variants groups: hover:(bg-gray-400 font-medium)      |     ❌     |        ✅        |
 | Fraction: translate-x-1/2, w-8.5                      |     ❌     |        ✅        |
 | Value infer: t-[25px], bg[#ffffff]                    |     ❌     |        ✅        |
-| Responsive pixel auto conversion from rem and px unit |     ❌     |   Coming up🚀    |
+| Responsive pixel auto conversion from rem and px unit |     ❌     |        ✅        |
 
 
 
