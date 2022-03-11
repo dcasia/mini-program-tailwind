@@ -41,6 +41,9 @@ export function transformValue(options: Options) {
 
             if (!node[ processed ]) {
 
+                // Don't transform anything inside url() values
+                if (node.value.includes('url')) { return }
+
                 const remValues = findValues(node.value, SourceUnit.REM)
                 const pxValues = findValues(node.value, SourceUnit.PX)
 
