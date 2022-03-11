@@ -84,7 +84,7 @@ module.exports = {
 
 | Name        | Type    | Default | Description                                               |
 | ----------- | ------- | ------- | --------------------------------------------------------- |
-| enableRpx   | Boolean | True    | 是否开启自动转换至 rpx 单位值的功能                       |
+| enableRpx   | Boolean | true    | 是否开启自动转换至 rpx 单位值的功能                       |
 | designWidth | Number  | 350     | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
 
 
