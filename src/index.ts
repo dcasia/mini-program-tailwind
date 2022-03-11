@@ -1,23 +1,21 @@
 import { Compiler, WebpackPluginInstance } from 'webpack'
+import { Options } from './interfaces'
 import { handleStyle } from './style-handler'
 import { handleTemplate } from './template-handler'
 import { isStyleFile, isTemplateFile } from './utilities'
-
-interface Options {
-    convertToRpx: boolean,
-}
 
 export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
 
     static pluginName = 'mini-program-tailwind-webpack-plugin'
     private defaultOptions: Options = {
-        convertToRpx: true,
+        enableRpx: true,
+        designWidth: 375,
     }
 
     private options: Options
 
     constructor(options: Options) {
-        this.options = Object.assign({}, options, this.defaultOptions)
+        this.options = { ...this.defaultOptions, ...options }
     }
 
     apply(compiler: Compiler) {
@@ -45,7 +43,7 @@ export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginIn
                             let handledSource = ''
 
                             if (isStyleFile(pathname)) {
-                                handledSource = handleStyle(rawSource)
+                                handledSource = handleStyle(rawSource, this.options)
                             } else if (isTemplateFile(pathname)) {
                                 handledSource = handleTemplate(rawSource)
                             }
