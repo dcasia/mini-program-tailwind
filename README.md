@@ -1,3 +1,5 @@
+![wechat-mp-plugin](https://user-images.githubusercontent.com/3030587/158826917-30c79222-b79d-4857-88f9-7e4184d1e771.jpg)
+
 # WeChat Mini program Tailwind/Windi CSS Webpack plugin
 
 Build WeChat mini programs using Tailwind & Windi CSS frameworks with this webpack plugin.
