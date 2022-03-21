@@ -3,9 +3,11 @@
 # WeChat Mini program Tailwind/Windi CSS Webpack plugin
 
 Build WeChat mini programs using Tailwind & Windi CSS frameworks with this webpack plugin.
+
 一个可以让你用 Tailwind 或 Windi CSS 开发微信小程序的 Webpack 插件。
 
 Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product agency, Shanghai.
+
 来自 [Digital Creative](https://en.digitalcreative.cn/), 一家位于上海的数字产品调研、设计与开发公司。
 
 - [What we do](https://en.digitalcreative.cn/what-we-do/)
