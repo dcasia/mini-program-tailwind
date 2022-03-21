@@ -8,7 +8,7 @@ Build WeChat mini programs using Tailwind & Windi CSS frameworks with this webpa
 
 Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product agency, Shanghai.
 
-来自 [Digital Creative](https://en.digitalcreative.cn/), 一家位于上海的数字产品调研、设计与开发公司。
+来自 [Digital Creative](https://digitalcreative.cn/), 一家位于上海的数字产品调研、设计与开发公司。
 
 - [What we do](https://en.digitalcreative.cn/what-we-do/)
 - [About us](https://en.digitalcreative.cn/about)
@@ -127,6 +127,11 @@ module.exports = {
 | Value infer: t-[25px], bg-[#ffffff]                   | ❌         | ✅               |
 | RGB value infer: text-[rgb(25,25,25)]                 | ❌         | ✅               |
 | Responsive pixel auto conversion from rem and px unit | ❌         | ✅               |
+
+- - -
+## 兼容范围
+
+- Webpack >= 5.0.0
 
 
 
