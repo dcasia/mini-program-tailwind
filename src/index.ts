@@ -1,8 +1,8 @@
 import { Compiler, WebpackPluginInstance } from 'webpack'
 import { Options } from './interfaces'
-import { handleStyle } from './style-handler'
-import { handleTemplate } from './template-handler'
+import { handleSource } from './universal-handler'
 import { isStyleFile, isTemplateFile } from './utilities'
+import { FileType } from './enum'
 
 export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
 
@@ -43,9 +43,9 @@ export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginIn
                             let handledSource = ''
 
                             if (isStyleFile(pathname)) {
-                                handledSource = handleStyle(rawSource, this.options)
+                                handledSource = handleSource(FileType.Style, rawSource, this.options)
                             } else if (isTemplateFile(pathname)) {
-                                handledSource = handleTemplate(rawSource)
+                                handledSource = handleSource(FileType.Template, rawSource, this.options)
                             }
 
                             if (handledSource) {

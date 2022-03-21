@@ -1,4 +1,4 @@
 export enum FileType {
-    Template,
-    Style,
+    Template = 'template',
+    Style = 'style',
 }
