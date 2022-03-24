@@ -34,6 +34,8 @@ Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product age
 
 [MPX](https://mpxjs.cn/), 一款具有优秀开发体验和深度性能优化的增强型跨端小程序框架。
 
+**以下示范操作步骤以集成 Windi CSS 为例*
+
 #### 安装 Windi CSS 与 windicss-webpack-plugin
 
 依照 Windi CSS [官方文档](https://windicss.org/integrations/webpack.html) 中陈述的步骤进行
@@ -89,6 +91,18 @@ module.exports = {
 开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
 
 [示例项目](./examples/mpx)
+
+> #### 提醒
+> 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其样式的作用域。
+> 在 MPX 项目中该操作的具体做法为在组件的 MPX 文件中添加 "styleIsolation" 的配置
+```html
+<script type="application/json">
+  {
+    "component": true,
+    "styleIsolation": "shared" // or "apply-shared"
+  }
+</script>
+```
 
 - - -
 ## 可配置参数
