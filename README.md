@@ -89,7 +89,7 @@ module.exports = {
 [示例项目](./examples/mpx)
 
 > #### 提醒
-> 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其样式的作用域。
+> 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB)。
 > 在 MPX 项目中该操作的具体做法为在组件的 MPX 文件中添加 "styleIsolation" 的配置：
 ```html
 <script type="application/json">
@@ -127,7 +127,7 @@ const handledStyle = handleSource('style', style, options)
 *待更新：在 Gulp 工作流中集成 Windi CSS 与本插件的功能*
 
 > #### 提醒
-> 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其样式的作用域。
+> 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB)。
 > 在原生小程序项目中该操作的具体做法为在组件的 JSON 文件中添加 "styleIsolation" 的配置：
 ```json
 {
