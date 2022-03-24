@@ -26,10 +26,6 @@ Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product age
 - - -
 ## 快速开始
 
-### 基于原生小程序
-
-待更新...
-
 ### 基于 MPX 框架
 
 [MPX](https://mpxjs.cn/), 一款具有优秀开发体验和深度性能优化的增强型跨端小程序框架。
@@ -94,7 +90,7 @@ module.exports = {
 
 > #### 提醒
 > 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其样式的作用域。
-> 在 MPX 项目中该操作的具体做法为在组件的 MPX 文件中添加 "styleIsolation" 的配置
+> 在 MPX 项目中该操作的具体做法为在组件的 MPX 文件中添加 "styleIsolation" 的配置：
 ```html
 <script type="application/json">
   {
@@ -102,6 +98,42 @@ module.exports = {
     "styleIsolation": "shared" // or "apply-shared"
   }
 </script>
+```
+
+### 基于原生小程序
+
+基于原生小程序的开发模式来集成这款插件，过程通常因每个团队的工作流不同而异。有的团队会有内部定制的一套 Webpack 或 Gulp 工作流，而有的团队甚至不会借助任何文件打包或处理的工作流去编写小程序。
+但这里需要明确的一点是，若要想在以原生开发模式的基础之上去增加文件处理的功能，我们必须去额外的启动一套文件监听处理服务，这个服务通常由自定义配置好的 Webpack, Gulp 等第三方工具完成。
+为了使这款插件具备超出 Webpack 适配范围之外尽可能大的兼容性，我们将核心功能分离并打包进了 `dist/universal-handler.js` 文件中，若你想在自己的工作流中使用该插件的核心功能，可以先在工作流逻辑中引入 `universal-handler`：
+
+```javascript
+const { handleSource } = require('@dcasia/mini-program-tailwind-webpack-plugin/dist/universal-handler')
+```
+
+随后处理 template:
+```javascript
+const template = '<view class="w-10 h-[0.5px] text-[#ffffff]"></view>'
+const handledTemplate = handleSource('template', template, options)
+```
+
+处理 style:
+```javascript
+const style = '.h-\[0\.5px\] {height: 0.5px;}'
+const handledStyle = handleSource('style', style, options)
+```
+
+在此之后你便可以将处理过的字符串返回至工作流原本的流程中来生成最终的文件。
+
+*待更新：在 Gulp 工作流中集成 Windi CSS 与本插件的功能*
+
+> #### 提醒
+> 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其样式的作用域。
+> 在原生小程序项目中该操作的具体做法为在组件的 JSON 文件中添加 "styleIsolation" 的配置：
+```json
+{
+  "component": true,
+  "styleIsolation": "shared" // or "apply-shared"
+}
 ```
 
 - - -
