@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint . --ext .ts --fix",
     "build": "rollup --config rollup.config.ts",
     "prepare": "npm run build"
@@ -25,12 +25,14 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-typescript": "^8.3.1",
+    "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
     "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
     "rollup": "^2.68.0"
   },
   "dependencies": {

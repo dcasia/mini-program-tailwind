@@ -120,7 +120,7 @@ const handledTemplate = handleSource('template', template, options)
 
 处理 style:
 ```javascript
-const style = '.h-\[0\.5px\] {height: 0.5px;}'
+const style = '.h-\\[0\\.5px\\] {height: 0.5px;}'
 const handledStyle = handleSource('style', style, options)
 ```
 
