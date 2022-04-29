@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.DS_Store
+.idea
+src/**/*.js
+miniprogram_npm/
+.vscode
+demo*

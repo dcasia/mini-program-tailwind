@@ -1,0 +1,23 @@
+{
+  "name": "miniprogram-ts-less-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "gulp",
+    "open": "/Applications/wechatwebdevtools.app/contents/MacOS/cli open --project $(pwd)"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@dcasia/mini-program-tailwind-webpack-plugin": "^1.2.3",
+    "gulp": "^4.0.2",
+    "gulp-change": "^1.0.2",
+    "gulp-changed": "^4.0.3",
+    "gulp-clean": "^0.4.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "miniprogram-api-typings": "^2.8.3-1",
+    "through2": "^4.0.2",
+    "windicss": "^3.5.1"
+  }
+}
