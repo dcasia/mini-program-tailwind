@@ -91,7 +91,8 @@ module.exports = {
 #### 完成
 开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
 
-[示例项目](./examples/mpx)
+#### 案例
+[MPX 集成案例](./examples/mpx)
 
 > #### 提醒
 > 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB)。
@@ -129,9 +130,10 @@ const style = '.h-\\[0\\.5px\\] {height: 0.5px;}'
 const handledStyle = handleSource('style', style, options)
 ```
 
-在此之后你便可以将处理过的字符串返回至工作流原本的流程中来生成最终的文件。
+此后你便可以将处理过的字符串返回至工作流原本的流程中来生成最终的文件。
 
-*待更新：在 Gulp 工作流中集成 Windi CSS 与本插件的功能*
+#### 案例
+[原生小程序集成案例（基于 Gulp）](./examples/native)
 
 > #### 提醒
 > 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB)。
