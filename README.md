@@ -135,12 +135,11 @@ const handledStyle = handleSource('style', style, options)
 - - -
 
 ## 陷阱
-- 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要对每一个组件设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB)，否则即使 Tailwind/Windi CSS 工作正常也无法用来开发组件 UI。([Issue#1](https://github.com/dcasia/wechat-mini-program-tailwind/issues/1))
-具体做法为在组件的 JSON 文件中添加 "styleIsolation" 的配置：
+- 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要在每一个组件的 JSON 配置文件中设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB)`styleIsolation`，否则即使 Tailwind/Windi CSS 工作正常也无法用来开发组件 UI。([Issue#1](https://github.com/dcasia/wechat-mini-program-tailwind/issues/1))
     ```json
     {
       "component": true,
-      "styleIsolation": "shared" // or "apply-shared"
+      "styleIsolation": "apply-shared"
     }
     ```
 - 由于目前微信开发者工具的热重载功能无法监听到样式文件内由 `@import` 导入的 wxss 文件内容的变动，所以当启用热重载功能开发时，模拟器不会随着你对 Tailwind/Windi CSS 的更改而更新 UI。目前微信官方已知晓该 bug 的存在，在该 bug 修复之前，我们建议你在开发时关闭热重载，用传统的页面自动刷新来预览每一次的 UI 更新。([Issue#3](https://github.com/dcasia/wechat-mini-program-tailwind/issues/3))
