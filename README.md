@@ -122,6 +122,8 @@ const handledStyle = handleSource('style', style, options)
 
 此后你便可以将处理过的字符串返回至工作流原本的流程中来生成最终的文件。
 
+> 对于集成过程中涉及到其他方面的细节可参考[小程序集成 Windi CSS 的自定义实现](https://juejin.cn/post/7093809282272985119#heading-5)
+
 #### 案例
 [原生小程序集成案例（基于 Gulp）](./examples/native)
 
