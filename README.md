@@ -28,15 +28,29 @@ Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product age
 - - -
 ## 快速开始
 
-**以下示范操作步骤以集成 Windi CSS 为例*
+*以下示范操作步骤均以集成 Windi CSS 为例（Windi CSS 的体验更佳）*
 
-### 基于 MPX 框架
+<details>
+
+<summary>针对以 Webpack 为构建工具的小程序</summary>
+
+### 基于 MPX 框架（典型的 Webpack 类小程序示范）
 
 [MPX](https://mpxjs.cn/), 一款具有优秀开发体验和深度性能优化的增强型跨端小程序框架。
 
-#### 安装 Windi CSS 与 windicss-webpack-plugin
+#### 安装 windicss-webpack-plugin
 
-依照 Windi CSS [官方文档](https://windicss.org/integrations/webpack.html) 中陈述的步骤进行
+```sh
+npm i windicss-webpack-plugin -D
+```
+
+> 可参考 Windi CSS [官方文档](https://windicss.org/integrations/webpack.html)了解更多细节
+
+#### 安装 @dcasia/mini-program-tailwind-webpack-plugin
+
+```sh
+npm i @dcasia/mini-program-tailwind-webpack-plugin -D
+```
 
 #### 更新 Windi CSS 配置文件
 
@@ -46,7 +60,7 @@ export default {
   //...
   prefixer: false,
   extract: {
-    // 将 .mpx 文件纳入范围
+    // 将 .mpx 文件纳入范围（其余 Webpack 类小程序根据项目本身的文件后缀酌情设置）
     include: ['src/**/*.{css,html,mpx}'],
     // 忽略部分文件夹
     exclude: ['node_modules', '.git', 'dist']
@@ -59,13 +73,7 @@ export default {
 }
 ```
 
-#### 安装 @dcasia/mini-program-tailwind-webpack-plugin
-
-```sh
-npm i @dcasia/mini-program-tailwind-webpack-plugin --save-dev
-```
-
-#### 更新 MPX 项目中的 webpack 配置文件
+#### 更新 webpack 配置文件
 
 ```javascript
 //webpack.base.conf.js
@@ -89,20 +97,26 @@ module.exports = {
 ```html
 <style src="windi-utilities.css"></style>
 ```
+  
+*对于其余 Webpack 类小程序，可参考类似的方式在入口的样式文件中引入 `windi-utilities.wxss` 即可*
 
 #### 完成
 开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
 
 #### 案例
 [MPX 集成案例](./examples/mpx)
+  
+</details>
 
-### 基于原生小程序
+<details>
 
-基于原生小程序的开发模式来集成这款插件，过程通常因每个团队的工作流不同而异。有的团队会有内部定制的一套 Webpack 或 Gulp 工作流，而有的团队甚至不会借助任何文件打包或处理的工作流去编写小程序。
+<summary>针对原生开发或自定义构建的小程序</summary>
 
-但这里需要明确的一点是，若要想在以原生开发模式的基础之上去增加文件处理的功能，我们必须去额外的启动一套文件监听处理服务，这个服务通常由自定义配置好的 Webpack, Gulp 等第三方工具完成。
+### 基于原生开发或自定义构建工具的小程序
+  
+无论你的项目基于什么 bundler 或 task runner 工具进行开发，只要有一个可编程的文件监听与处理服务便可以进行自定义实现。但这里需要明确的一点是，若要想在以原生开发模式的基础之上去集成本插件的功能，我们需要去额外的启动一套可编程的文件监听处理服务，这个服务通常由配置好的 Webpack, Gulp 等第三方工具完成。但如果你是通过 Tailwind/Windi CSS 官方的 CLI 进行小程序 UI 开发，那遗憾的是由于该 CLI 不支持插件机制而且不可能支持对于模板文件的修改，所以无法进行实现自定义。
 
-为了使这款插件具备超出 Webpack 适配范围之外尽可能大的兼容性，我们将核心功能分离并打包进了 `dist/universal-handler.js` 文件中，若你想在自己的工作流中使用该插件的核心功能，可以先在工作流逻辑中引入 `universal-handler`：
+我们将核心功能解耦并打包进了 `dist/universal-handler.js` 文件中，若你想在自定义的构建工具中集成本插件的核心功能，可以在工作流逻辑中引入 `universal-handler`：
 
 ```javascript
 const { handleSource } = require('@dcasia/mini-program-tailwind-webpack-plugin/dist/universal-handler')
@@ -110,23 +124,24 @@ const { handleSource } = require('@dcasia/mini-program-tailwind-webpack-plugin/d
 
 随后处理 template:
 ```javascript
-const template = '<view class="w-10 h-[0.5px] text-[#ffffff]"></view>'
-const handledTemplate = handleSource('template', template, options)
+const rawContent = '<view class="w-10 h-[0.5px] text-[#ffffff]"></view>'
+const handledTemplate = handleSource('template', rawContent, options) // 'template' 为常量，设置文件类型为模板文件
 ```
 
 处理 style:
 ```javascript
-const style = '.h-\\[0\\.5px\\] {height: 0.5px;}'
-const handledStyle = handleSource('style', style, options)
+const rawContent = '.h-\\[0\\.5px\\] {height: 0.5px;}'
+const handledStyle = handleSource('style', rawContent, options) // 'style' 为常量，设置文件类型为样式文件
 ```
 
 此后你便可以将处理过的字符串返回至工作流原本的流程中来生成最终的文件。
 
-> 对于集成过程中涉及到其他方面的细节可参考[小程序集成 Windi CSS 的自定义实现](https://juejin.cn/post/7093809282272985119#heading-5)
+> 对于自定义实现过程中涉及到其他方面的细节可参考[小程序集成 Windi CSS 的自定义实现](https://juejin.cn/post/7093809282272985119#heading-5)
 
 #### 案例
 [原生小程序集成案例（基于 Gulp）](./examples/native)
 
+</details>
 
 - - -
 ## 可配置参数
