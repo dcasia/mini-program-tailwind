@@ -1,11 +1,19 @@
 import { FileType } from './enum'
 
+export const regExpVue = /.+\.vue$/
+
+export const regExpReact = /.+\.(?:j|t)sx$/
+
+export const regExpStyle = /.+\.(?:wx|ac|jx|tt|q|c)ss$/
+
+export const regExpTemplate = /.+\.(wx|ax|jx|ks|tt|q)ml$/
+
 export function isStyleFile(filename) {
-    return /.+\.(?:wx|ac|jx|tt|q|c)ss$/.test(filename)
+    return regExpStyle.test(filename)
 }
 
 export function isTemplateFile(filename) {
-    return /.+\.(wx|ax|jx|ks|tt|q)ml$/.test(filename)
+    return regExpTemplate.test(filename)
 }
 
 const charactersMap = {

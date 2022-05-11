@@ -2,8 +2,8 @@ import * as wxml from '@vivaxy/wxml'
 import { handleCharacters } from './utilities'
 import { FileType } from './enum'
 import { replaceStringLiteralPlugin } from './babel'
+import * as babel from '@babel/core'
 
-const babel = require('@babel/core')
 const matchScriptsInsideClassNames = /{{.+?}}/g
 const replaceMarker = '__MP_TW_PLUGIN_REPLACE__'
 
@@ -35,6 +35,7 @@ export function handleTemplate(rawSource: string) {
                             generatorOpts: {
                                 minified: true,
                             },
+                            configFile: false,
                             plugins: [ replaceStringLiteralPlugin ],
                         })
 

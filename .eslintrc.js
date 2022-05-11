@@ -18,5 +18,9 @@ module.exports = {
     plugins: [ '@typescript-eslint' ],
     rules: {
         '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        'unicorn/prevent-abbreviations': 'off',
+        'multiline-comment-style': 'off',
+        'capitalized-comments': 'off',
     },
 }
