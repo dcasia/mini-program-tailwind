@@ -48,11 +48,14 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
             StringLiteral(path, state) {
 
                 const targetClassFieldName = classFieldName[ state.opts.framework ]
-                const keyNode = path.parentPath.isObjectProperty() && path.parentPath.get('key')
 
-                if (keyNode) {
+                const keyNode = path.key === 'value' && path.parentPath.isObjectProperty() && path.parentPath.get('key') // class: 'test'
+                    || (path.parentPath.isArrayExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // class: ['test', 'test']
+                    || (path.key === 'key' && path.parentPath.findParent(path => path.isObjectProperty())?.get('key'))// class: ['test', {'test': true}] or {'test': true}
 
-                    const foundClassName = targetClassFieldName.find(name => keyNode.isIdentifier({ name }))
+                if (!Array.isArray(keyNode)) {
+
+                    const foundClassName = targetClassFieldName.find(name => keyNode.isIdentifier?.({ name }))
 
                     if (foundClassName) {
 
