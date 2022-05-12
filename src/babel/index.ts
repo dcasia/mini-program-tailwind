@@ -49,18 +49,23 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
                 const targetClassFieldName = classFieldName[ state.opts.framework ]
                 const keyNode = path.parentPath.isObjectProperty() && path.parentPath.get('key')
-                const foundClassName = targetClassFieldName.find(name => keyNode.isIdentifier({ name }))
 
-                if (foundClassName) {
+                if (keyNode) {
 
-                    const rawContent = path.node.value
-                    const newContent = handleCharacters(rawContent, FileType.Template)
+                    const foundClassName = targetClassFieldName.find(name => keyNode.isIdentifier({ name }))
 
-                    if (newContent !== rawContent) {
+                    if (foundClassName) {
 
-                        logClassFieldsChange(rawContent, newContent)
-                        path.replaceWith(t.stringLiteral(newContent))
-                        path.skip()
+                        const rawContent = path.node.value
+                        const newContent = handleCharacters(rawContent, FileType.Template)
+
+                        if (newContent !== rawContent) {
+
+                            logClassFieldsChange(rawContent, newContent)
+                            path.replaceWith(t.stringLiteral(newContent))
+                            path.skip()
+
+                        }
 
                     }
 
