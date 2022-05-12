@@ -17,10 +17,10 @@ export default (ctx: IPluginContext, options: TaroPluginOptions) => {
 
     // Default configuration
     const defaultOptions: TaroPluginOptions = {
-        enableRpx: true,
+        enableRpx: false,
         enableWindiCSS: true,
         enableDebugLog: false,
-        designWidth: 350,
+        designWidth: 375,
         framework: FrameworkUsedInTaro.React,
     }
 
