@@ -1,22 +1,34 @@
+import { TaroWebpackPluginOptions } from './../interfaces'
 import { Compiler, WebpackPluginInstance } from 'webpack'
 import { collectRawAndModified } from '../babel'
 import { ConcatSource } from 'webpack-sources'
+import { FrameworkUsedInTaro } from '../enum'
 
-export default class TaroTemplateTailwindWebpackPlugin implements WebpackPluginInstance {
+export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInstance {
 
-    static pluginName = 'taro-template-tailwind-webpack-plugin'
+    static pluginName = 'taro-v-node-tailwind-webpack-plugin'
+
+    private defaultOptions: TaroWebpackPluginOptions = {
+        framework: FrameworkUsedInTaro.React,
+    }
+
+    private options: TaroWebpackPluginOptions
+
+    constructor(options: TaroWebpackPluginOptions) {
+        this.options = { ...this.defaultOptions, ...options }
+    }
 
     apply(compiler: Compiler) {
 
         // Using Webpack v4 API here as Taro sticks with v4
         compiler.hooks.thisCompilation.tap(
-            TaroTemplateTailwindWebpackPlugin.pluginName,
+            TaroVNodeTailwindWebpackPlugin.pluginName,
             function(compilation) {
 
                 const rawVsModifiedPairs = []
 
                 compilation.hooks.afterOptimizeModules.tap(
-                    TaroTemplateTailwindWebpackPlugin.pluginName,
+                    TaroVNodeTailwindWebpackPlugin.pluginName,
                     function(modules) {
 
                         for (const module of Array.from(modules)) {
@@ -36,10 +48,11 @@ export default class TaroTemplateTailwindWebpackPlugin implements WebpackPluginI
 
                         }
 
-                    })
+                    },
+                )
 
                 compilation.hooks.afterOptimizeAssets.tap(
-                    TaroTemplateTailwindWebpackPlugin.pluginName,
+                    TaroVNodeTailwindWebpackPlugin.pluginName,
                     assets => {
 
                         console.log(rawVsModifiedPairs)

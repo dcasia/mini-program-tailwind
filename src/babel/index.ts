@@ -1,9 +1,15 @@
-import { FileType } from '../enum'
+import { FileType, FrameworkUsedInTaro } from '../enum'
 import { handleCharacters } from '../utilities'
 import { PluginItem } from '@babel/core'
 import * as babel from '@babel/core'
 
 let classFieldsChanges: [string, string][] = []
+
+const classFieldName = {
+    [ FrameworkUsedInTaro.React ]: [ 'className' ],
+    [ FrameworkUsedInTaro.Vue2 ]: [ 'class', 'staticClass' ],
+    [ FrameworkUsedInTaro.Vue3 ]: [ 'class', 'staticClass' ],
+}
 
 function logClassFieldsChange(rawContent: string, newContent: string) {
     classFieldsChanges.push([ rawContent, newContent ])
@@ -39,9 +45,13 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
     return {
         visitor: {
-            StringLiteral(path) {
+            StringLiteral(path, state) {
 
-                if (path.parentPath.isObjectProperty() && path.parentPath.get('key').isIdentifier({ name: 'class' })) {
+                const targetClassFieldName = classFieldName[ state.opts.framework ]
+                const keyNode = path.parentPath.isObjectProperty() && path.parentPath.get('key')
+                const foundClassName = targetClassFieldName.find(name => keyNode.isIdentifier({ name }))
+
+                if (foundClassName) {
 
                     const rawContent = path.node.value
                     const newContent = handleCharacters(rawContent, FileType.Template)
@@ -62,12 +72,18 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
 }
 
-export function collectRawAndModified(rawContent) {
+export function collectRawAndModified(rawContent: string, framework: FrameworkUsedInTaro) {
 
     cleanClassFieldsChanges()
 
     babel.transformSync(rawContent, {
-        plugins: [ replaceClassFieldsValuePlugin ],
+        plugins: [
+            [
+                replaceClassFieldsValuePlugin, {
+                    framework,
+                },
+            ],
+        ],
         configFile: false,
     })
 
