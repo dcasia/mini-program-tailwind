@@ -2,6 +2,7 @@ import { FileType, FrameworkUsedInTaro } from '../enum'
 import { handleCharacters } from '../utilities'
 import { PluginItem } from '@babel/core'
 import * as babel from '@babel/core'
+import { handleClassNameWithCurlyBraces } from '../template-handler'
 
 let classFieldsChanges: [string, string][] = []
 
@@ -53,14 +54,14 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
                     || (path.parentPath.isArrayExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // class: ['test', 'test']
                     || (path.key === 'key' && path.parentPath.findParent(path => path.isObjectProperty())?.get('key'))// class: ['test', {'test': true}] or {'test': true}
 
-                if (!Array.isArray(keyNode)) {
+                if (keyNode && !Array.isArray(keyNode)) {
 
                     const foundClassName = targetClassFieldName.find(name => keyNode.isIdentifier?.({ name }))
 
                     if (foundClassName) {
 
                         const rawContent = path.node.value
-                        const newContent = handleCharacters(rawContent, FileType.Template)
+                        const newContent = handleClassNameWithCurlyBraces(rawContent)
 
                         if (newContent !== rawContent) {
 

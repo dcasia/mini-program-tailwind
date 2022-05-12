@@ -4,7 +4,7 @@ import { FileType } from './enum'
 import { replaceStringLiteralPlugin } from './babel'
 import * as babel from '@babel/core'
 
-const matchScriptsInsideClassNames = /{{.+?}}/g
+const matchScriptsInsideClassNames = /({{)(.+?)(}})/g
 const replaceMarker = '__MP_TW_PLUGIN_REPLACE__'
 
 export function handleTemplate(rawSource: string) {
@@ -16,37 +16,7 @@ export function handleTemplate(rawSource: string) {
         if (node.type === wxml.NODE_TYPES.ELEMENT) {
 
             if (node.attributes.class) {
-
-                let buffer = node.attributes.class
-
-                const scriptsMatchResults = Array.from(node.attributes.class.matchAll(matchScriptsInsideClassNames))
-
-                if (scriptsMatchResults.length) {
-                    buffer = buffer.replace(matchScriptsInsideClassNames, replaceMarker)
-                }
-
-                buffer = handleCharacters(buffer, FileType.Template)
-
-                if (scriptsMatchResults.length) {
-
-                    for (const script of scriptsMatchResults) {
-
-                        const output = babel.transformSync(script[ 0 ], {
-                            generatorOpts: {
-                                minified: true,
-                            },
-                            configFile: false,
-                            plugins: [ replaceStringLiteralPlugin ],
-                        })
-
-                        buffer = buffer.replace(replaceMarker, output.code)
-
-                    }
-
-                }
-
-                node.attributes.class = buffer
-
+                node.attributes.class = handleClassNameWithCurlyBraces(node.attributes.class)
             }
 
         }
@@ -54,5 +24,40 @@ export function handleTemplate(rawSource: string) {
     })
 
     return wxml.serialize(parsed)
+
+}
+
+export function handleClassNameWithCurlyBraces(raw) {
+
+    const scriptsMatchResults = Array.from(raw.matchAll(matchScriptsInsideClassNames))
+
+    if (scriptsMatchResults.length) {
+        raw = raw.replace(matchScriptsInsideClassNames, `{{${ replaceMarker }}}`)
+    }
+
+    raw = handleCharacters(raw, FileType.Template)
+
+    if (scriptsMatchResults.length) {
+
+        for (const script of scriptsMatchResults) {
+
+            const scriptContent = script[ 0 ].replace(matchScriptsInsideClassNames, '$2')
+
+            const output = babel.transformSync(scriptContent, {
+                generatorOpts: {
+                    compact: true,
+                    retainLines: true,
+                },
+                configFile: false,
+                plugins: [ replaceStringLiteralPlugin ],
+            })
+
+            raw = raw.replace(replaceMarker, output.code.replace(/;$/, ''))
+
+        }
+
+    }
+
+    return raw
 
 }
