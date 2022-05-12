@@ -16,6 +16,7 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
     private defaultOptions: TaroWebpackPluginOptions = {
         framework: FrameworkUsedInTaro.React,
+        enableDebugLog: false,
     }
 
     private options: TaroWebpackPluginOptions
@@ -64,6 +65,10 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                     TaroVNodeTailwindWebpackPlugin.pluginName,
                     assets => {
 
+                        if (this.options.enableDebugLog) {
+                            console.log('[mini-program-tailwind-plugin]: Collected', rawVsModifiedPairs)
+                        }
+
                         for (const pathname in assets) {
 
                             /**
@@ -92,7 +97,10 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                                     rawSource = rawSource.replace(rawContent, newContent)
                                     removedPair.push(pair)
                                     hasTheAssetChanged = true
-                                    console.log('replace', pair)
+
+                                    if (this.options.enableDebugLog) {
+                                        console.log('[mini-program-tailwind-plugin]: Replaced', pair)
+                                    }
 
                                 }
 
@@ -103,8 +111,13 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                                 const indexToBeRemoved = rawVsModifiedPairs.findIndex(pair => pair === pairToBeRemoved)
 
                                 rawVsModifiedPairs.splice(indexToBeRemoved, 1)
-                                console.log('removed', pairToBeRemoved)
-                                console.log('remain', rawVsModifiedPairs)
+
+                                if (this.options.enableDebugLog) {
+
+                                    console.log('[mini-program-tailwind-plugin]: Removed', pairToBeRemoved)
+                                    console.log('[mini-program-tailwind-plugin]: Remain', rawVsModifiedPairs)
+
+                                }
 
                             }
 

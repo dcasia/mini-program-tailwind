@@ -8,10 +8,10 @@ export interface Options {
 
 export interface TaroWebpackPluginOptions {
     framework: FrameworkUsedInTaro,
+    enableDebugLog: boolean,
 }
 
 export interface TaroPluginOptions extends Options, TaroWebpackPluginOptions {
-    enableDebugLog: boolean,
     enableWindiCSS: boolean,
     windiCSSConfigFile?: WindiCssOptions | string,
 }
