@@ -1,6 +1,5 @@
 import { defineConfig } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
-import dts from 'rollup-plugin-dts'
 
 export default defineConfig([
     {
@@ -59,14 +58,13 @@ export default defineConfig([
             ),
         ],
     },
-    {
-        // path to your declaration files root
-        input: './dist/dts/index.d.ts',
-        output: {
-            file: 'dist/index.d.ts',
-            format: 'es',
-        },
-        plugins: [ dts() ],
-    },
+    // {
+    //     input: './dist/dts/index.d.ts',
+    //     output: {
+    //         file: 'dist/index.d.ts',
+    //         format: 'es',
+    //     },
+    //     plugins: [ dts() ],
+    // },
 
 ])

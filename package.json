@@ -1,12 +1,23 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.3.0-beta.9",
+  "version": "1.3.0-beta.13",
   "description": "",
   "main": "dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "exports": {
+      ".": "./dist/index.js",
+      "./taro": "./dist/taro.js",
+      "./universal-handler": "./dist/universal-handler.js"
+  },
+  "types": "dist/dts/index.d.ts",
+  "typesVersions": {
+    "*": {
+        "taro": ["dist/dts/taro/index.d.ts"],
+        "universal-handler": ["dist/dts/universal-handler.d.ts"]
+    }
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint . --ext .ts --fix",
