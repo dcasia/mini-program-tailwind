@@ -5,6 +5,6 @@ export enum FileType {
 
 export enum FrameworkUsedInTaro {
     React = 'react',
-    Vue2 = 'vue2',
+    Vue2 = 'vue',
     Vue3 = 'vue3',
 }
