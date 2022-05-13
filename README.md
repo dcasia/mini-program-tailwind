@@ -121,11 +121,11 @@ npm i @dcasia/mini-program-tailwind-webpack-plugin -D
 ```javascript
 // config/index.js
 const config = {
-	plugins: [
-		['@dcasia/mini-program-tailwind-webpack-plugin/dist/taro', {
-			// ...options
-		}]
-	]
+  plugins: [
+    ['@dcasia/mini-program-tailwind-webpack-plugin/dist/taro', {
+      // ...options
+    }]
+  ]
 }
 ```
 
@@ -186,7 +186,7 @@ import 'windi.css';
 我们将核心功能解耦并打包进了 `dist/universal-handler.js` 文件中，若你想在自定义的构建工具中集成本插件的核心功能，可以在工作流逻辑中引入 `universal-handler`：
 
 ```javascript
-const { handleSource } = require('@dcasia/mini-program-tailwind-webpack-plugin/dist/universal-handler')
+const { handleSource } = require('@dcasia/mini-program-tailwind-webpack-plugin/universal-handler')
 ```
 
 随后处理 template:
