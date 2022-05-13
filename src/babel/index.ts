@@ -52,7 +52,7 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
                 const keyNode = path.key === 'value' && path.parentPath.isObjectProperty() && path.parentPath.get('key') // class: 'test'
                     || (path.parentPath.isArrayExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // class: ['test', 'test']
-                    || (path.key === 'key' && path.parentPath.findParent(path => path.isObjectProperty())?.get('key'))// class: ['test', {'test': true}] or {'test': true}
+                    || (path.key === 'key' && path.parentPath.findParent(path => path.isObjectProperty())?.get('key')) // class: ['test', {'test': true}] or class: {'test': true}
 
                 if (keyNode && !Array.isArray(keyNode)) {
 

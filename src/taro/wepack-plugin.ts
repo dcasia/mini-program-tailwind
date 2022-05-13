@@ -3,8 +3,9 @@ import { Compiler, WebpackPluginInstance } from 'webpack'
 import { collectRawAndModified } from '../babel'
 import { ConcatSource } from 'webpack-sources'
 import { FrameworkUsedInTaro } from '../enum'
+import { regExpJS } from '../utilities'
 
-const frameworkModuleCharacteristic = {
+const frameworkModuleCharacteristics = {
     [ FrameworkUsedInTaro.React ]: [ '.jsx', '.tsx' ],
     [ FrameworkUsedInTaro.Vue2 ]: [ 'type=template' ],
     [ FrameworkUsedInTaro.Vue3 ]: [ 'type=template' ],
@@ -25,7 +26,7 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
     constructor(options: TaroWebpackPluginOptions) {
 
         this.options = { ...this.defaultOptions, ...options }
-        this.moduleCharcs = frameworkModuleCharacteristic[ this.options.framework ]
+        this.moduleCharcs = frameworkModuleCharacteristics[ this.options.framework ]
 
     }
 
@@ -71,9 +72,7 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                         for (const pathname in assets) {
 
-                            /**
-                             *  Todo: restrict filename with the end of '.js'
-                             * */
+                            if (!regExpJS.test(pathname)) { continue }
 
                             const originalSource = assets[ pathname ]
                             const removedPair = []
@@ -89,7 +88,7 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                                 /**
                                  *  Todo: implement more strict match here
-                                 *  E.g. Combining with 'class:' prefix
+                                 *  E.g. Combining with 'class:' prefix or finding the target by temporarily placing a mark
                                  * */
 
                                 if (rawSource.includes(rawContent)) {

@@ -1,5 +1,7 @@
 import { FileType } from './enum'
 
+export const regExpJS = /.+\.js$/
+
 export const regExpVue = /.+\.vue$/
 
 export const regExpReact = /.+\.(?:j|t)sx$/
