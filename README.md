@@ -2,19 +2,11 @@
 
 # WeChat Mini program Tailwind/Windi CSS Webpack plugin
 
-Build WeChat mini programs using Tailwind & Windi CSS frameworks with this webpack plugin.
+> 来自 [Digital Creative](https://digitalcreative.cn/), 一家位于上海的数字产品调研、设计与开发公司。
+> - [What we do](https://en.digitalcreative.cn/what-we-do/)
+> - [About us](https://en.digitalcreative.cn/about)
+> - [Contact us](https://en.digitalcreative.cn/contact)
 
-一个可以让你用 Tailwind 或 Windi CSS 开发微信小程序的 Webpack 插件。
-
-Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product agency, Shanghai.
-
-来自 [Digital Creative](https://digitalcreative.cn/), 一家位于上海的数字产品调研、设计与开发公司。
-
-- [What we do](https://en.digitalcreative.cn/what-we-do/)
-- [About us](https://en.digitalcreative.cn/about)
-- [Contact us](https://en.digitalcreative.cn/contact)
-
-- - -
 ## 介绍
 
 由于小程序本身不支持由 Tailwind/Windi CSS 产生的选择器名称中包含的一些特殊字符（`\[` `\!` `\.` 等），这使得你无法在开发小程序时使用一些本该在开发 Web 应用时就可以使用的很实用且灵活的语法，如 `w-[30px]`, `translate-x-1/2`, `!bg-[#ff0000]`。
@@ -32,7 +24,7 @@ Made by [Digital Creative](https://en.digitalcreative.cn/) - Digital product age
 
 <details>
 
-<summary>针对以 Webpack 为构建工具的小程序</summary>
+<summary>⚙️ 针对以 Webpack 为构建工具的小程序</summary>
 
 ### 基于 MPX 框架（典型的 Webpack 类小程序示范）
 
@@ -52,7 +44,9 @@ npm i windicss-webpack-plugin -D
 npm i @dcasia/mini-program-tailwind-webpack-plugin -D
 ```
 
-#### 更新 Windi CSS 配置文件
+#### 新建 Windi CSS 配置文件
+
+在项目根目录新建 Windi CSS 配置文件
 
 ```javascript
 //windi.config.js
@@ -110,7 +104,80 @@ module.exports = {
 
 <details>
 
-<summary>针对原生开发或自定义构建的小程序</summary>
+<summary>👽 针对 Taro 小程序</summary>
+
+### 基于 Taro 小程序
+
+[Taro](https://taro.jd.com/), 多端统一开发解决方案
+
+#### 安装 @dcasia/mini-program-tailwind-webpack-plugin
+
+```other
+npm i @dcasia/mini-program-tailwind-webpack-plugin -D
+```
+
+#### 使用 Taro 插件
+
+```javascript
+// config/index.js
+const config = {
+	plugins: [
+		['@dcasia/mini-program-tailwind-webpack-plugin/dist/taro', {
+			// ...options
+		}]
+	]
+}
+```
+
+#### 新建 Windi CSS 配置文件
+
+在项目根目录新建 Windi CSS 配置文件
+
+```javascript
+// windi.config.js
+export default {
+  prefixer: false,
+  extract: {
+    // 忽略部分文件夹
+    exclude: ['node_modules', '.git', 'dist']
+  },
+  corePlugins: {
+    // 禁用掉在小程序环境中不可能用到的 plugins
+    container: false
+  }
+}
+```
+
+> Tailwind CSS 配置文件同样适用，详情可参考：[Windi CSS 配置说明](https://windicss.org/guide/configuration.html)
+
+#### 在 app.js/app.ts 中引入 Windi CSS 的产物
+
+```javascript
+// app.js/app.ts
+import 'windi.css';
+```
+
+#### 完成
+
+开始享受在 Taro 中由 Windi CSS 带来的高效开发体验 🎉
+
+#### Taro 插件可配置参数
+
+| 名称                 | 类型      | 默认值   | 描述                                       |
+| ------------------ | ------- | ----- | ---------------------------------------- |
+| enableWindiCSS     | Boolean | true  | 是否开启插件自带的 Windi CSS                      |
+| windiCSSConfigFile | String  | null  | 必要时手动设置 Windi CSS 的路径                    |
+| enableRpx          | Boolean | false | 是否开启自动转换至 rpx 单位值的功能（由于 Taro 自带该功能，默认关闭） |
+| designWidth        | Number  | 375   | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率          |
+| enableDebugLog     | Boolean | false | 是否开启打印本插件的内部运行日志                         |
+
+*所有参数均为非必填*
+
+</details>
+
+<details>
+
+<summary>🛠 针对原生开发或自定义构建的小程序</summary>
 
 ### 基于原生开发或自定义构建工具的小程序
   
