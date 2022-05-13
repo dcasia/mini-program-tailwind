@@ -14,3 +14,8 @@ export function handleSource(fileType: FileType, source: string, options?: Optio
     }
 
 }
+
+export default {
+    handleStyle,
+    handleTemplate,
+}

@@ -3,6 +3,7 @@ import { Options } from './interfaces'
 import { handleSource } from './universal-handler'
 import { isStyleFile, isTemplateFile } from './utilities'
 import { FileType } from './enum'
+import { ConcatSource } from 'webpack-sources'
 
 export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
 
@@ -20,50 +21,97 @@ export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginIn
 
     apply(compiler: Compiler) {
 
-        const { webpack } = compiler
-        const { sources, Compilation } = webpack
-        const { ConcatSource } = sources
+        const isWebpackV5 = compiler.webpack && compiler.webpack.version >= '5'
 
-        compiler.hooks.thisCompilation.tap(
-            MiniProgramTailwindWebpackPlugin.pluginName,
-            compilation => {
+        if (isWebpackV5) {
 
-                compilation.hooks.processAssets.tap(
-                    {
-                        name: MiniProgramTailwindWebpackPlugin.pluginName,
-                        stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
-                    },
-                    assets => {
+            const { webpack } = compiler
+            const { sources, Compilation } = webpack
+            const { ConcatSource } = sources
 
-                        for (const pathname in assets) {
+            compiler.hooks.thisCompilation.tap(
+                MiniProgramTailwindWebpackPlugin.pluginName,
+                compilation => {
 
-                            const originalSource = assets[ pathname ]
-                            const rawSource = originalSource.source().toString()
+                    compilation.hooks.processAssets.tap(
+                        {
+                            name: MiniProgramTailwindWebpackPlugin.pluginName,
+                            stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
+                        },
+                        assets => {
 
-                            let handledSource = ''
+                            for (const pathname in assets) {
 
-                            if (isStyleFile(pathname)) {
-                                handledSource = handleSource(FileType.Style, rawSource, this.options)
-                            } else if (isTemplateFile(pathname)) {
-                                handledSource = handleSource(FileType.Template, rawSource, this.options)
+                                const originalSource = assets[ pathname ]
+                                const rawSource = originalSource.source().toString()
+
+                                let handledSource = ''
+
+                                if (isStyleFile(pathname)) {
+                                    handledSource = handleSource(FileType.Style, rawSource, this.options)
+                                } else if (isTemplateFile(pathname)) {
+                                    handledSource = handleSource(FileType.Template, rawSource, this.options)
+                                }
+
+                                if (handledSource) {
+
+                                    const source = new ConcatSource(handledSource)
+
+                                    compilation.updateAsset(pathname, source)
+
+                                }
+
                             }
 
-                            if (handledSource) {
+                        },
 
-                                const source = new ConcatSource(handledSource)
+                    )
 
-                                compilation.updateAsset(pathname, source)
+                },
+            )
+
+        } else {
+
+            compiler.hooks.thisCompilation.tap(
+                MiniProgramTailwindWebpackPlugin.pluginName,
+                compilation => {
+
+                    compilation.hooks.afterOptimizeAssets.tap(
+                        MiniProgramTailwindWebpackPlugin.pluginName,
+                        assets => {
+
+                            for (const pathname in assets) {
+
+                                const originalSource = assets[ pathname ]
+                                const rawSource = originalSource.source().toString()
+
+                                let handledSource = ''
+
+                                if (isStyleFile(pathname)) {
+                                    handledSource = handleSource(FileType.Style, rawSource, this.options)
+                                } else if (isTemplateFile(pathname)) {
+                                    handledSource = handleSource(FileType.Template, rawSource, this.options)
+                                }
+
+                                if (handledSource) {
+
+                                    const source = new ConcatSource(handledSource)
+
+                                    // @ts-ignore
+                                    compilation.updateAsset(pathname, source)
+
+                                }
 
                             }
 
-                        }
+                        },
 
-                    },
+                    )
 
-                )
+                },
+            )
 
-            },
-        )
+        }
 
     }
 

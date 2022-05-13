@@ -1,11 +1,23 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "description": "",
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
+  "exports": {
+      ".": "./dist/index.js",
+      "./taro": "./dist/taro.js",
+      "./universal-handler": "./dist/universal-handler.js"
+  },
+  "types": "dist/dts/index.d.ts",
+  "typesVersions": {
+    "*": {
+        "taro": ["dist/dts/taro/index.d.ts"],
+        "universal-handler": ["dist/dts/universal-handler.d.ts"]
+    }
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint . --ext .ts --fix",
@@ -24,7 +36,9 @@
   "homepage": "https://github.com/dcasia/tailwind-for-mini-program-webpack-plugin#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-multi-entry": "^4.1.0",
     "@rollup/plugin-typescript": "^8.3.1",
+    "@tarojs/service": "^3.4.9",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
@@ -33,12 +47,15 @@
     "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.5.1",
-    "rollup": "^2.68.0"
+    "rollup": "^2.68.0",
+    "rollup-plugin-dts": "^4.2.1",
+    "webpack": "^5.69.1"
   },
   "dependencies": {
     "@babel/core": "^7.17.5",
     "@vivaxy/wxml": "^2.1.0",
     "postcss": "^8.4.7",
-    "webpack": "^5.69.1"
+    "webpack-sources": "^1.4.3",
+    "windicss-webpack-plugin": "^1.7.2"
   }
 }
