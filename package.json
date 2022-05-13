@@ -1,8 +1,9 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.3.0-beta.7",
+  "version": "1.3.0-beta.9",
   "description": "",
   "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -36,13 +37,14 @@
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.5.1",
     "rollup": "^2.68.0",
+    "rollup-plugin-dts": "^4.2.1",
     "webpack": "^5.69.1"
   },
   "dependencies": {
     "@babel/core": "^7.17.5",
     "@vivaxy/wxml": "^2.1.0",
     "postcss": "^8.4.7",
-    "windicss-webpack-plugin": "^1.7.2",
-    "webpack-sources": "^1.4.3"
+    "webpack-sources": "^1.4.3",
+    "windicss-webpack-plugin": "^1.7.2"
   }
 }

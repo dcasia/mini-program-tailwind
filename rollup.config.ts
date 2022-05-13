@@ -1,5 +1,6 @@
 import { defineConfig } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
+import dts from 'rollup-plugin-dts'
 
 export default defineConfig([
     {
@@ -16,9 +17,9 @@ export default defineConfig([
             'webpack-sources',
         ],
         plugins: [
-            typescript({
-                exclude: [ 'examples/**' ],
-            }),
+            typescript(
+                { tsconfig: './tsconfig.json' },
+            ),
         ],
     }, {
         input: 'src/taro/index.ts',
@@ -36,9 +37,9 @@ export default defineConfig([
             'windicss-webpack-plugin',
         ],
         plugins: [
-            typescript({
-                exclude: [ 'examples/**' ],
-            }),
+            typescript(
+                { tsconfig: './tsconfig.json' },
+            ),
         ],
     },
     {
@@ -53,9 +54,19 @@ export default defineConfig([
             'postcss',
         ],
         plugins: [
-            typescript({
-                exclude: [ 'examples/**' ],
-            }),
+            typescript(
+                { tsconfig: './tsconfig.json' },
+            ),
         ],
     },
+    {
+        // path to your declaration files root
+        input: './dist/dts/index.d.ts',
+        output: {
+            file: 'dist/index.d.ts',
+            format: 'es',
+        },
+        plugins: [ dts() ],
+    },
+
 ])
