@@ -48,7 +48,7 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
         visitor: {
             StringLiteral(path, state) {
 
-                const targetClassFieldName = classFieldName[ state.opts.framework ]
+                const targetClassFieldName = classFieldName[ state.opts.framework ] || []
 
                 const keyNode = path.key === 'value' && path.parentPath.isObjectProperty() && path.parentPath.get('key') // class: 'test'
                     || (path.parentPath.isArrayExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // class: ['test', 'test']

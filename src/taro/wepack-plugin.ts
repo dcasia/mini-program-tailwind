@@ -26,11 +26,15 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
     constructor(options: TaroWebpackPluginOptions) {
 
         this.options = { ...this.defaultOptions, ...options }
-        this.moduleCharcs = frameworkModuleCharacteristics[ this.options.framework ]
+        this.moduleCharcs = frameworkModuleCharacteristics[ this.options.framework ] || []
 
     }
 
     apply(compiler: Compiler) {
+
+        if (!(this.moduleCharcs.length > 0)) {
+            return console.warn('[mini-program-tailwind-plugin]: Unsupported framework type, submit issues here: https://github.com/dcasia/mini-program-tailwind/issues')
+        }
 
         // Using Webpack v4 API here as Taro sticks with v4
         compiler.hooks.thisCompilation.tap(
