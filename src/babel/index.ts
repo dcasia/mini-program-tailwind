@@ -50,10 +50,13 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
                 const targetClassFieldName = classFieldName[ state.opts.framework ] || []
 
-                const keyNode = path.key === 'value' && path.parentPath.isObjectProperty() && path.parentPath.get('key') // class: 'test'
-                    || (path.parentPath.isArrayExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // class: ['test', 'test']
-                    || (path.key === 'key' && path.parentPath.findParent(path => path.isObjectProperty())?.get('key')) // class: ['test', {'test': true}] or class: {'test': true}
-                    || (path.parentPath.isArrayExpression() && path.parentPath.findParent(path => path.isObjectProperty())?.get('key')) // class: Object(['test'])
+                const keyNode = path.key === 'value' && path.parentPath.isObjectProperty() && path.parentPath.get('key') // universal class: 'test'
+                    || (path.parentPath.isArrayExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // vue class: ['test', 'test']
+                    || (path.parentPath.isMemberExpression() && path.parentPath.parentPath.isCallExpression() && path.parentPath.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.parentPath.get('key')) // react className: 'test'.concat('test-1', 'test-2')
+                    || (path.parentPath.isCallExpression() && path.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.get('key')) // react className: 'test'.concat('test-1', 'test-2')
+                    || (path.parentPath.isConditionalExpression() && path.parentPath.parentPath.isCallExpression() && path.parentPath.parentPath.parentPath.isObjectProperty() && path.parentPath.parentPath.parentPath.get('key')) // react className: 'test'.concat(true ? 'test-1' : '')
+                    || (path.key === 'key' && path.parentPath.findParent(path => path.isObjectProperty())?.get('key')) // vue class: ['test', {'test': true}] or class: {'test': true}
+                    || (path.parentPath.isArrayExpression() && path.parentPath.findParent(path => path.isObjectProperty())?.get('key')) // vue class: Object(['test'])
 
                 if (keyNode && !Array.isArray(keyNode)) {
 
