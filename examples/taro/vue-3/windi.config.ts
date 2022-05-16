@@ -3,21 +3,11 @@ import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
     prefixer: false, // 是否需要自动兼容平台浏览器（不需要）
-    //   prefix: 'c-', // 类名样式前缀（防止样式污染）
     extract: {
-        // 扫描文件范围
-        // include: ['src/**/*.{css,html,vue}'],
         // 忽略扫描文件夹
         exclude: ['node_modules', '.git', 'dist']
     },
-    // shortcuts className 不需要加前缀
-    shortcuts: {
-      // 示例
-          'flex-center': 'flex items-center justify-center'
-    },
     theme: {
-      // screens: null, // 媒体查询（不需要）
-      // animationTimingFunction: null, // 动画渲染函数（不需要）
         extend: {
             fontSize: {
                 'xxxs': [ '0.5rem', '0.5rem' ], // 8px
@@ -76,4 +66,7 @@ export default defineConfig({
             }
         }
     },
+    corePlugins: {
+        container: false
+    }
 })
