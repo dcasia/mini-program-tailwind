@@ -7,10 +7,6 @@ export default defineConfig({
         // 忽略扫描文件夹
         exclude: ['node_modules', '.git', 'dist']
     },
-    shortcuts: {
-        // 示例
-        'flex-center': 'flex items-center justify-center'
-    },
     theme: {
         extend: {
             fontSize: {
@@ -20,7 +16,7 @@ export default defineConfig({
                 'sm': [ '0.875rem', '1.25rem' ], // 14px
                 'base': [ '1rem', '1.5rem' ], // 16px
                 'lg': [ '1.125rem', '1.75rem' ], // 18px
-                'xl': [ '1.25rem', '1.75rem' ], // 20px
+                'xl': [ '50px', '1.75rem' ], // 20px
                 '2xl': [ '1.75rem', '2.25rem' ] // 28px
             },
             colors: {
