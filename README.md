@@ -71,7 +71,6 @@ npm i @dcasia/mini-program-tailwind-webpack-plugin -D
 ```javascript
 //windi.config.js
 export default {
-  //...
   prefixer: false,
   extract: {
     // 将 .mpx 文件纳入范围（其余 Webpack 类小程序根据项目本身的文件后缀酌情设置）
@@ -83,7 +82,6 @@ export default {
     // 禁用掉在小程序环境中不可能用到的 plugins
     container: false
   }
-  //...
 }
 ```
 
@@ -104,7 +102,6 @@ const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
 const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin")
 
 module.exports = {
-  //...
   plugins: [
     new WindiCSSWebpackPlugin(),
     new MiniProgramTailwindWebpackPlugin({
@@ -145,12 +142,14 @@ module.exports = {
 
 > [Taro](https://taro.jd.com/), 多端统一开发解决方案
 
-本插件包含 Taro 插件，通过“一键安装”的方式来适配 Taro 小程序
+本插件包含 Taro 插件，通过“一键安装”的方式来便捷的适配 Taro 小程序。
 
 > Taro 插件已兼容以下前端框架
 > - React
 > - Vue 2
 > - Vue 3
+>
+> 同时也兼容在混合原生组件开发中使用 Tailwind/Windi CSS
 
 #### 安装 @dcasia/mini-program-tailwind-webpack-plugin
 
@@ -220,7 +219,9 @@ import 'windi.css';
 
 #### 案例
 
-> 待更新...
+> - [集成案例：Taro - React 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/taro/react)
+> - [集成案例：Taro - Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/taro/vue-2)
+> - [集成案例：Taro - Vue 3 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/taro/vue-3)
 
 </details>
 
@@ -326,8 +327,8 @@ const handledStyle = handleSource('style', rawContent, options) // 'style' 为�
 - - -
 ## 兼容范围
 
-- Webpack >= 4.0.0
-- Taro >= 3.0
+- Webpack >= `4.0.0`
+- Taro >= `3.0.0`
 
 
 
