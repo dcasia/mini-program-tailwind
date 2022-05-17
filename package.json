@@ -1,6 +1,6 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "让你的小程序用上原汁原味的 Tailwind/Windi CSS",
   "keywords": ["miniprogram", "mini-program", "tailwindcss", "windicss", "wechat", "taro", "css", "postcss"],
   "main": "dist/index.js",
