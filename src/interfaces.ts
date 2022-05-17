@@ -1,5 +1,5 @@
 import { WindiCssOptions } from '@windicss/config'
-import { FrameworkUsedInTaro } from './enum'
+import { TaroFramework } from './enum'
 
 export interface Options {
     enableRpx: boolean,
@@ -7,7 +7,7 @@ export interface Options {
 }
 
 export interface TaroWebpackPluginOptions {
-    framework: FrameworkUsedInTaro,
+    framework: TaroFramework,
     enableDebugLog: boolean,
 }
 

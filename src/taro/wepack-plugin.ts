@@ -2,13 +2,13 @@ import { TaroWebpackPluginOptions } from './../interfaces'
 import { Compiler, WebpackPluginInstance } from 'webpack'
 import { collectRawAndModified } from '../babel'
 import { ConcatSource } from 'webpack-sources'
-import { FrameworkUsedInTaro } from '../enum'
+import { TaroFramework } from '../enum'
 import { regExpJS } from '../utilities'
 
 const frameworkModuleCharacteristics = {
-    [ FrameworkUsedInTaro.React ]: [ '.jsx', '.tsx' ],
-    [ FrameworkUsedInTaro.Vue2 ]: [ 'type=template' ],
-    [ FrameworkUsedInTaro.Vue3 ]: [ 'type=template' ],
+    [ TaroFramework.React ]: [ '.jsx', '.tsx' ],
+    [ TaroFramework.Vue2 ]: [ 'type=template' ],
+    [ TaroFramework.Vue3 ]: [ 'type=template' ],
 }
 
 export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInstance {
@@ -16,7 +16,7 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
     static pluginName = 'taro-v-node-tailwind-webpack-plugin'
 
     private defaultOptions: TaroWebpackPluginOptions = {
-        framework: FrameworkUsedInTaro.React,
+        framework: TaroFramework.React,
         enableDebugLog: false,
     }
 

@@ -1,15 +1,9 @@
-// defineConfig 是带有类型提示的帮助函数，如果不需要可以忽略
 import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
-    prefixer: false, // 是否需要自动兼容平台浏览器（不需要）
+    prefixer: false,
     extract: {
-        // 忽略扫描文件夹
         exclude: ['node_modules', '.git', 'dist']
-    },
-    shortcuts: {
-        // 示例
-        'flex-center': 'flex items-center justify-center'
     },
     theme: {
         extend: {

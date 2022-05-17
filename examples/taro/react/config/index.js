@@ -13,6 +13,7 @@ const config = {
   outputRoot: 'dist',
   plugins: [
       ['@dcasia/mini-program-tailwind-webpack-plugin/dist/taro', {
+        enableRpx: true
       }]
   ],
   defineConstants: {

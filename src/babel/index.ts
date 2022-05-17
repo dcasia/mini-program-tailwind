@@ -1,4 +1,4 @@
-import { FileType, FrameworkUsedInTaro } from '../enum'
+import { FileType, TaroFramework } from '../enum'
 import { handleCharacters } from '../utilities'
 import { PluginItem } from '@babel/core'
 import * as babel from '@babel/core'
@@ -7,9 +7,9 @@ import { handleClassNameWithCurlyBraces } from '../template-handler'
 let classFieldsChanges: [string, string][] = []
 
 const classFieldName = {
-    [ FrameworkUsedInTaro.React ]: [ 'className' ],
-    [ FrameworkUsedInTaro.Vue2 ]: [ 'class', 'staticClass' ],
-    [ FrameworkUsedInTaro.Vue3 ]: [ 'class', 'staticClass' ],
+    [ TaroFramework.React ]: [ 'className' ],
+    [ TaroFramework.Vue2 ]: [ 'class', 'staticClass' ],
+    [ TaroFramework.Vue3 ]: [ 'class', 'staticClass' ],
 }
 
 function logClassFieldsChange(rawContent: string, newContent: string) {
@@ -85,7 +85,7 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
 }
 
-export function collectRawAndModified(rawContent: string, framework: FrameworkUsedInTaro) {
+export function collectRawAndModified(rawContent: string, framework: TaroFramework) {
 
     cleanClassFieldsChanges()
 
