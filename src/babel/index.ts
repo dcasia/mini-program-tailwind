@@ -66,20 +66,14 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
                 enter(path, state) {
 
                     if (isIdentifierTheClassField(path, state.opts.framework)) {
-
-                        console.log('enter')
                         isVisitingClassNameField = true
-
                     }
 
                 },
                 exit(path, state) {
 
                     if (isIdentifierTheClassField(path, state.opts.framework)) {
-
-                        console.log('exit')
                         isVisitingClassNameField = false
-
                     }
 
                 },
