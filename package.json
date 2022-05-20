@@ -24,7 +24,7 @@
     "lint": "eslint . --ext .ts --fix",
     "build": "rollup --config rollup.config.ts",
     "prepare": "npm run build",
-    "publsh": "npm publish --public",
+    "publish": "npm publish --public",
     "publish:beta": "npm publish --public --tag beta"
   },
   "repository": {
