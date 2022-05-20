@@ -55,7 +55,7 @@ npm i windicss-webpack-plugin -D
 > <details>
 > <summary>参考 Windi CSS 官方文档了解更多细节</summary>
 >    
-> [Windi CSS Webpack 集成文档](https://windicss.org/integrations/webpack.html)
+> [Windi CSS Webpack 集成](https://windicss.org/integrations/webpack.html)
 > </details>
 
 #### 安装 @dcasia/mini-program-tailwind-webpack-plugin
@@ -257,7 +257,7 @@ npm i windicss-webpack-plugin -D
 > <details>
 > <summary>参考 Windi CSS 官方文档了解更多细节</summary>
 >    
-> [Windi CSS Webpack 集成文档](https://windicss.org/integrations/webpack.html)
+> [Windi CSS Webpack 集成](https://windicss.org/integrations/webpack.html)
 > </details>
 
 #### 安装 @dcasia/mini-program-tailwind-webpack-plugin
@@ -297,8 +297,6 @@ export default {
   preflight: false,
   prefixer: false,
   extract: {
-    // 将 .mpx 文件纳入范围（其余 Webpack 类小程序根据项目本身的文件后缀酌情设置）
-    include: ['src/**/*.{css,html,mpx}'],
     // 忽略部分文件夹
     exclude: ['node_modules', '.git', 'dist']
   },
