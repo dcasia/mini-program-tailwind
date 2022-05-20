@@ -16,7 +16,7 @@ export function handleTemplate(rawSource: string) {
         if (node.type === wxml.NODE_TYPES.ELEMENT) {
 
             if (node.attributes.class) {
-                node.attributes.class = handleClassNameWithCurlyBraces(node.attributes.class)
+                node.attributes.class = handleClassNameInTemplate(node.attributes.class)
             }
 
         }
@@ -27,7 +27,7 @@ export function handleTemplate(rawSource: string) {
 
 }
 
-export function handleClassNameWithCurlyBraces(raw) {
+export function handleClassNameInTemplate(raw) {
 
     const scriptsMatchResults = Array.from(raw.matchAll(matchScriptsInsideClassNames))
 

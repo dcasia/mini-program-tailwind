@@ -1,6 +1,6 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "让你的小程序用上原汁原味的 Tailwind/Windi CSS",
   "keywords": ["miniprogram", "mini-program", "tailwindcss", "windicss", "wechat", "taro", "css", "postcss"],
   "main": "dist/index.js",
@@ -23,7 +23,9 @@
     "test": "jest",
     "lint": "eslint . --ext .ts --fix",
     "build": "rollup --config rollup.config.ts",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "publish": "npm publish --public",
+    "publish:beta": "npm publish --public --tag beta"
   },
   "repository": {
     "type": "git",

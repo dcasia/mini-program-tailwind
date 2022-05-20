@@ -47,6 +47,12 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                     TaroVNodeTailwindWebpackPlugin.pluginName,
                     modules => {
 
+                        let startTime = 0
+
+                        if (this.options.enableDebugLog) {
+                            startTime = Date.now()
+                        }
+
                         for (const module of Array.from(modules)) {
 
                             for (const charc of this.moduleCharcs) {
@@ -63,6 +69,10 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                         }
 
+                        if (this.options.enableDebugLog) {
+                            console.log('[mini-program-tailwind-plugin]: Class names collection benchmark', `${ Date.now() - startTime }ms`)
+                        }
+
                     },
                 )
 
@@ -70,8 +80,13 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                     TaroVNodeTailwindWebpackPlugin.pluginName,
                     assets => {
 
+                        let startTime = 0
+
                         if (this.options.enableDebugLog) {
+
+                            startTime = Date.now()
                             console.log('[mini-program-tailwind-plugin]: Collected', rawVsModifiedPairs)
+
                         }
 
                         for (const pathname in assets) {
@@ -133,6 +148,10 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                             }
 
+                        }
+
+                        if (this.options.enableDebugLog) {
+                            console.log('[mini-program-tailwind-plugin]: Class names replacement benchmark', `${ Date.now() - startTime }ms`)
                         }
 
                     },
