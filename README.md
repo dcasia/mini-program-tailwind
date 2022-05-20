@@ -40,7 +40,7 @@
 
 <summary>⚙️ 针对以 Webpack 为构建工具的小程序</summary>
 
-### Webpack 类小程序（MPX）
+### Webpack 通用类小程序（MPX）
 
 > [MPX](https://mpxjs.cn/), 一款具有优秀开发体验和深度性能优化的增强型跨端小程序框架。
 
@@ -64,13 +64,33 @@ npm i windicss-webpack-plugin -D
 npm i @dcasia/mini-program-tailwind-webpack-plugin -D
 ```
 
+#### 更新 webpack 配置文件
+
+使用 Webpack 插件
+
+```javascript
+//webpack.base.conf.js
+const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
+const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin")
+
+module.exports = {
+  plugins: [
+    new WindiCSSWebpackPlugin(),
+    new MiniProgramTailwindWebpackPlugin({
+      // options
+    })
+  ]
+}
+```
+
 #### 新建 Windi CSS 配置文件
 
-在项目根目录新建 Windi CSS 配置文件
+在项目根目录新建 `windi.config.js` 配置文件
 
 ```javascript
 //windi.config.js
 export default {
+  preflight: false,
   prefixer: false,
   extract: {
     // 将 .mpx 文件纳入范围（其余 Webpack 类小程序根据项目本身的文件后缀酌情设置）
@@ -92,32 +112,23 @@ export default {
 > [Windi CSS 配置文件兼容规则](https://windicss.org/guide/configuration.html)
 > </details>
 
-#### 更新 webpack 配置文件
-
-使用 Webpack 插件
-
-```javascript
-//webpack.base.conf.js
-const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
-const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin")
-
-module.exports = {
-  plugins: [
-    new WindiCSSWebpackPlugin(),
-    new MiniProgramTailwindWebpackPlugin({
-      // options
-    })
-  ]
-}
-```
-
-#### 在 app.mpx 中引入 Windi CSS 的产物
+#### 在入口文件中引入 Windi CSS 的产物
 
 ```html
-<style src="windi-utilities.css"></style>
+// app.mpx
+<style src="windi.css"></style>
 ```
   
-> 对于其余 Webpack 类小程序，可参考类似的方式在入口的样式文件中引入 `windi-utilities.wxss` 即可
+> 对于非 MPX 项目的其余 Webpack 类小程序，可参考类似的方式在入口文件中引入 `windi.css` 即可，如：
+> ```javascript
+> // main.js
+> import 'windi.css'
+> ``` 
+> <details>
+> <summary>参考 Windi CSS 官方文档了解更多细节</summary>
+>    
+> [引入 Windi CSS 样式文件](https://windicss.org/integrations/webpack.html#include-the-virtual-module)
+> </details>
 
 #### 完成
 开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
@@ -172,7 +183,7 @@ const config = {
 
 #### 新建 Windi CSS 配置文件
 
-在项目根目录新建 Windi CSS 配置文件
+在项目根目录新建 `windi.config.js` 配置文件
 
 ```javascript
 // windi.config.js
@@ -196,10 +207,10 @@ export default {
 > [Windi CSS 配置文件兼容规则](https://windicss.org/guide/configuration.html)
 > </details>
 
-#### 在 app.js/app.ts 中引入 Windi CSS 的产物
+#### 在 app.js 中引入 Windi CSS 的产物
 
 ```javascript
-// app.js/app.ts
+// app.js
 import 'windi.css';
 ```
 
@@ -223,6 +234,112 @@ import 'windi.css';
 > - [集成案例：Taro - Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/taro/vue-2)
 > - [集成案例：Taro - Vue 3 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/taro/vue-3)
 
+</details>
+
+<details>
+
+<summary>🔗 针对 uni-app 小程序</summary>
+
+### uni-app 小程序
+
+> [uni-app](https://uniapp.dcloud.net.cn/), 开发一次，多端覆盖。
+
+本篇内容包含 uni-app 的 Vue 2 与 Vue 3 两种安装示范。
+
+### Vue 2
+
+#### 安装 windicss-webpack-plugin
+
+```sh
+npm i windicss-webpack-plugin -D
+```
+
+> <details>
+> <summary>参考 Windi CSS 官方文档了解更多细节</summary>
+>    
+> [Windi CSS Webpack 集成文档](https://windicss.org/integrations/webpack.html)
+> </details>
+
+#### 安装 @dcasia/mini-program-tailwind-webpack-plugin
+
+```sh
+npm i @dcasia/mini-program-tailwind-webpack-plugin -D
+```
+
+#### 新建 Vue 配置文件
+
+在项目根目录新建 `vue.config.js` 配置文件并使用 Webpack 插件
+
+```javascript
+// vue.config.js
+const WindiCSSWebpackPlugin = require("windicss-webpack-plugin");
+const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin")
+
+module.exports = {  
+  configureWebpack: {  
+    plugins: [  
+      new WindiCSSWebpackPlugin(),
+      new MiniProgramTailwindWebpackPlugin({
+        // options
+      })
+    ]  
+  }  
+}
+```
+
+#### 新建 Windi CSS 配置文件
+
+在项目根目录新建 `windi.config.js` 配置文件
+
+```javascript
+//windi.config.js
+export default {
+  preflight: false,
+  prefixer: false,
+  extract: {
+    // 将 .mpx 文件纳入范围（其余 Webpack 类小程序根据项目本身的文件后缀酌情设置）
+    include: ['src/**/*.{css,html,mpx}'],
+    // 忽略部分文件夹
+    exclude: ['node_modules', '.git', 'dist']
+  },
+  corePlugins: {
+    // 禁用掉在小程序环境中不可能用到的 plugins
+    container: false
+  }
+}
+```
+
+> 此处 Tailwind CSS 配置文件同样适用
+> <details>
+> <summary>参考 Windi CSS 官方文档了解更多细节</summary>
+>    
+> [Windi CSS 配置文件兼容规则](https://windicss.org/guide/configuration.html)
+> </details>
+
+#### 在 main.js 中引入 Windi CSS 的产物
+
+```javascript
+// main.js
+import 'windi.css'
+```
+
+#### 完成
+开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
+
+#### 可配置参数
+
+| **名称**      | **类型**  | **默认** | **描述**                          |
+| ----------- | ------- | ------ | ------------------------------- |
+| enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
+| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+
+#### 案例
+> [集成案例：uni-app Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-2)
+
+### Vue 3
+
+> 待更新...
+  
 </details>
 
 <details>
