@@ -1080,10 +1080,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     "to-fast-properties" "^2.0.0"
 
-"@dcasia/mini-program-tailwind-webpack-plugin@^1.3.4-beta3":
-  "integrity" "sha512-SCbroBCa629GNEUx2jOVjULrytpzwokqWrOfEaPTDZuAdbwb262PFQW6O0lDp+moLYim9MTFFN2443WI+DBslA=="
-  "resolved" "https://registry.npmjs.org/@dcasia/mini-program-tailwind-webpack-plugin/-/mini-program-tailwind-webpack-plugin-1.3.4-beta3.tgz"
-  "version" "1.3.4-beta3"
+"@dcasia/mini-program-tailwind-webpack-plugin@^1.3.4":
+  "integrity" "sha512-es0DHytywUapkRceV7GnvfbjNUWet2dfFnRmPPT9P7szVWHcY9H6bUF6zQXQmvx2HYcZNTwQyDM3umjF9q+lgg=="
+  "resolved" "https://registry.npmjs.org/@dcasia/mini-program-tailwind-webpack-plugin/-/mini-program-tailwind-webpack-plugin-1.3.4.tgz"
+  "version" "1.3.4"
   dependencies:
     "@babel/core" "^7.17.5"
     "@vivaxy/wxml" "^2.1.0"
