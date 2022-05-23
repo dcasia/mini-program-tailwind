@@ -2,8 +2,8 @@ import { WindiCssOptions } from '@windicss/config'
 import { TaroFramework } from './enum'
 
 export interface Options {
-    enableRpx: boolean,
-    designWidth: number,
+    enableRpx?: boolean,
+    designWidth?: number,
 }
 
 export interface TaroWebpackPluginOptions {

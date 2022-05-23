@@ -22,7 +22,6 @@
 </script>
 
 <style>
-
     .index {
         @apply pt-[45vh];
     }
