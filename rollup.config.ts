@@ -41,9 +41,9 @@ export default defineConfig([
             ),
         ],
     }, {
-        input: 'src/vite/index.ts',
+        input: 'src/rollup/index.ts',
         output: {
-            file: 'dist/vite.js',
+            file: 'dist/rollup.js',
             format: 'cjs',
             exports: 'default',
         },
