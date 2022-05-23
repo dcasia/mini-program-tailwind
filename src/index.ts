@@ -15,7 +15,7 @@ export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginIn
 
     private options: Options
 
-    constructor(options: Options) {
+    constructor(options?: Options) {
         this.options = { ...this.defaultOptions, ...options }
     }
 

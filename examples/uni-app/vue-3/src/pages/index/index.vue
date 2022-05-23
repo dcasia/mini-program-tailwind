@@ -4,21 +4,9 @@
     </view>
 </template>
 
-<script lang="ts">
-    import Vue from 'vue';
-	export default Vue.extend({
-		data() {
-			return {
-				title: 'Hello world!'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	});
+<script setup lang="ts">
+import { ref } from 'vue'
+const title = ref('Hello world!')
 </script>
 
 <style>

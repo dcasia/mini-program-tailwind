@@ -38,13 +38,13 @@
 
 <details>
 
-<summary>⚙️ 针对以 Webpack 为构建工具的小程序</summary>
+<summary>⚙️ 针对常规 Webpack 类小程序（以 MPX 为例）</summary>
 
-### Webpack 通用类小程序（MPX）
+### 常规 Webpack 类小程序（以 MPX 为例）
 
 > [MPX](https://mpxjs.cn/), 一款具有优秀开发体验和深度性能优化的增强型跨端小程序框架。
 
-MPX 框架为典型的以 Webpack 为构建工具的小程序框架，因此本篇安装示范以 MPX 项目为例。其余 Webpack 类小程序项目参考相同步骤进行安装即可。
+由于 MPX 框架为典型的以 Webpack 为构建工具的增强型小程序开发框架，所以本次安装示范将 MPX 项目作为典型案例来演示如何为大部分 Webpack 类小程序项目进行插件安装。**以下安装步骤在 Webpack 项目中具有广泛的通用性**，对于大部分 Webpack 类小程序项目只需参考相同步骤进行安装即可。
 
 #### 安装 windicss-webpack-plugin
 
@@ -119,7 +119,7 @@ export default {
 <style src="windi.css"></style>
 ```
   
-> 对于非 MPX 项目的其余 Webpack 类小程序，可参考类似的方式在入口文件中引入 `windi.css` 即可，如：
+> 对于其余非 MPX 项目的 Webpack 类小程序，可参考类似的方式在入口文件中引入 `windi.css` 即可，如：
 > ```javascript
 > // main.js
 > import 'windi.css'

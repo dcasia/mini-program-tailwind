@@ -40,6 +40,23 @@ export default defineConfig([
                 { tsconfig: './tsconfig.json' },
             ),
         ],
+    }, {
+        input: 'src/rollup/index.ts',
+        output: {
+            file: 'dist/rollup.js',
+            format: 'cjs',
+            exports: 'default',
+        },
+        external: [
+            'postcss',
+            '@babel/core',
+            '@vivaxy/wxml',
+        ],
+        plugins: [
+            typescript(
+                { tsconfig: './tsconfig.json' },
+            ),
+        ],
     },
     {
         input: 'src/universal-handler.ts',
