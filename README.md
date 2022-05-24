@@ -207,7 +207,7 @@ export default {
 > [Windi CSS 配置文件兼容规则](https://windicss.org/guide/configuration.html)
 > </details>
 
-#### 在 app.js 中引入 Windi CSS 的产物
+#### 在入口文件中引入 Windi CSS 的产物
 
 ```javascript
 // app.js
@@ -244,9 +244,13 @@ import 'windi.css';
 
 > [uni-app](https://uniapp.dcloud.net.cn/), 开发一次，多端覆盖。
 
-本篇内容包含 uni-app 的 Vue 2 与 Vue 3 两种安装示范。
+本篇内容包含 uni-app 的 Vue 3 与 Vue 2 两种安装示范。
 
-### Vue 2
+### Vue 3 安装示范
+
+> 请参考下一个小程序类型：常规 Vite 类小程序（以 uni-app 为例）
+
+### Vue 2 安装示范
 
 #### 安装 windicss-webpack-plugin
 
@@ -314,7 +318,7 @@ export default {
 > [Windi CSS 配置文件兼容规则](https://windicss.org/guide/configuration.html)
 > </details>
 
-#### 在 main.js 中引入 Windi CSS 的产物
+#### 在入口文件中引入 Windi CSS 的产物
 
 ```javascript
 // main.js
@@ -333,10 +337,100 @@ import 'windi.css'
 
 #### 案例
 > [集成案例：uni-app Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-2)
+  
+</details>
 
-### Vue 3
+<details>
 
-> 待更新...
+<summary>🔩 针对常规 Vite 类小程序（以 uni-app 为例）</summary>
+
+### 常规 Vite 类小程序（以 uni-app 为例）
+
+> [uni-app](https://uniapp.dcloud.net.cn/), 开发一次，多端覆盖。
+
+由于在 uni-app 中使用 Vue 3 进行小程序开发时项目是基于 Vite 进行构建的，所以本次安装示范将 uni-app Vue 3 项目作为典型案例来演示如何为大部分 Vite 类小程序项目进行插件安装。**以下安装步骤在 Vite 项目中具有广泛的通用性**，对于大部分 Vite 类小程序项目只需参考相同步骤进行安装即可。
+
+#### 安装 vite-plugin-windicss 与 windicss
+
+```sh
+npm i vite-plugin-windicss windicss -D
+```
+
+> <details>
+> <summary>参考 Windi CSS 官方文档了解更多细节</summary>
+>    
+> [Windi CSS Vite 集成](https://windicss.org/integrations/vite.html)
+> </details>
+
+#### 安装 @dcasia/mini-program-tailwind-webpack-plugin
+
+```sh
+npm i @dcasia/mini-program-tailwind-webpack-plugin -D
+```
+
+#### 更新 Vite 配置文件
+
+在 `vite.config.js` 配置文件中使用插件
+
+```javascript
+// vite.config.js
+import WindiCSS from 'vite-plugin-windicss';
+import MiniProgramTailwind from '@dcasia/mini-program-tailwind-webpack-plugin/rollup';
+
+export default {
+  plugins: [
+    WindiCSS(),
+    MiniProgramTailwind()
+  ]
+}
+```
+
+#### 新建 Windi CSS 配置文件
+
+在项目根目录新建 `windi.config.js` 配置文件
+
+```javascript
+//windi.config.js
+export default {
+  preflight: false,
+  prefixer: false,
+  extract: {
+    // 忽略部分文件夹
+    exclude: ['node_modules', '.git', 'dist']
+  },
+  corePlugins: {
+    // 禁用掉在小程序环境中不可能用到的 plugins
+    container: false
+  }
+}
+```
+
+> 此处 Tailwind CSS 配置文件同样适用
+> <details>
+> <summary>参考 Windi CSS 官方文档了解更多细节</summary>
+>    
+> [Windi CSS 配置文件兼容规则](https://windicss.org/guide/configuration.html)
+> </details>
+
+#### 在入口文件中引入 Windi CSS 的产物
+
+```javascript
+// main.js
+import 'virtual:windi.css'
+```
+
+#### 完成
+开始享受在小程序项目中由 Windi CSS 带来的高效开发体验 🎉
+
+#### 可配置参数
+
+| **名称**      | **类型**  | **默认** | **描述**                          |
+| ----------- | ------- | ------ | ------------------------------- |
+| enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
+| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+
+#### 案例
+> [集成案例：uni-app Vue 3 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-3)
   
 </details>
 
@@ -444,6 +538,14 @@ const handledStyle = handleSource('style', rawContent, options) // 'style' 为�
 
 - Webpack >= `4.0.0`
 - Taro >= `3.0.0`
+- uni-app
+- MPX
+
+- - -
+
+<a href="https://trackgit.com">
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/l3kakfme2m940m4xf85l" alt="trackgit-views" />
+</a>
 
 
 
