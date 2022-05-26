@@ -511,6 +511,7 @@ const handledStyle = handleSource('style', rawContent, options) // 'style' 为�
     > </details>
 
 - 由于目前微信开发者工具的热重载功能无法监听到样式文件内由 `@import` 导入的 wxss 文件内容的变动，所以当启用热重载功能开发时，模拟器不会随着你对 Tailwind/Windi CSS 的更改而更新 UI。目前微信官方已知晓该 bug 的存在，在该 bug 修复之前，我们建议你在开发时关闭热重载，用传统的页面自动刷新来预览每一次的 UI 更新。
+目前，该问题已在微信开发者工具 [1.06.2205231 RC](https://developers.weixin.qq.com/miniprogram/dev/devtools/rc.html#_1-06-2205231-%E6%9B%B4%E6%96%B0%E8%AF%B4%E6%98%8E) 中被修复。
     > <details>
     > <summary>相关 issue</summary>
     >    
@@ -538,14 +539,8 @@ const handledStyle = handleSource('style', rawContent, options) // 'style' 为�
 
 - Webpack >= `4.0.0`
 - Taro >= `3.0.0`
-- uni-app
 - MPX
-
-- - -
-
-<a href="https://trackgit.com">
-<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/l3kakfme2m940m4xf85l" alt="trackgit-views" />
-</a>
+- uni-app
 
 
 
