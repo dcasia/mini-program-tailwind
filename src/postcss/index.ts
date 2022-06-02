@@ -13,6 +13,15 @@ export function transformSelector() {
             if (!node[ processed ]) {
 
                 node.selector = handleCharacters(node.selector, FileType.Style)
+
+                /**
+                 * A polyfill that is compatible 'space-[x,y]-\d' syntax
+                 * Note that in mini program environment ':not()' selector can only be used when it's combined with other selectors
+                 * e.g. view:not() works but the standalone :not() selector couldn't work
+                 */
+                // eslint-disable-next-line @typescript-eslint/padding-line-between-statements
+                node.selector = node.selector.replace(/^(\.space-\w)(-.+?)\s.*/, '$1$2:not($1-reverse) > view:not([hidden]):not(:first-child), $1$2$1-reverse > view:not([hidden]):not(:last-child)')
+                node.selector = node.selector.replace(/^(\.space-\w-reverse).*/, '$1 > view:not([hidden])')
                 node[ processed ] = true
 
             }
