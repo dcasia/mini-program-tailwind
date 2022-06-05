@@ -4,6 +4,9 @@ import { TaroFramework } from './enum'
 export interface Options {
     enableRpx?: boolean,
     designWidth?: number,
+    utilitiesSettings?: {
+        spaceBetweenItems?: string[],
+    },
 }
 
 export interface TaroWebpackPluginOptions {
