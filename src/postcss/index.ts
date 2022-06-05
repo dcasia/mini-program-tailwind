@@ -7,7 +7,7 @@ export function transformSelector(options: Options) {
     const processed = Symbol('processed')
     const defaultSpaceBetweenItems = [ 'view', 'button', 'text', 'image' ]
     const usersSpaceBetweenItems = options?.utilitiesSettings?.spaceBetweenItems || []
-    const spaceBetweenItems = [ ...defaultSpaceBetweenItems, ...usersSpaceBetweenItems ]
+    const spaceBetweenItems = Array.from(new Set([ ...defaultSpaceBetweenItems, ...usersSpaceBetweenItems ]))
     const customReplacement = new Map()
 
     /**
