@@ -3,15 +3,19 @@
   "version": "1.4.0",
   "description": "让你的小程序用上原汁原味的 Tailwind/Windi CSS",
   "keywords": [
-    "miniprogram",
     "mini-program",
+    "tailwind",
     "tailwindcss",
     "windicss",
     "wechat",
     "taro",
     "css",
     "postcss",
-    "uni-app"
+    "uni-app",
+    "miniprogram",
+    "weapp",
+    "atomic-css",
+    "unocss"
   ],
   "main": "dist/index.js",
   "files": [
