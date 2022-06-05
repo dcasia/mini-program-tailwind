@@ -1,6 +1,6 @@
 {
   "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "让你的小程序用上原汁原味的 Tailwind/Windi CSS",
   "keywords": [
     "mini-program",
