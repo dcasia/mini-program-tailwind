@@ -22,5 +22,6 @@ module.exports = {
         'unicorn/prevent-abbreviations': 'off',
         'multiline-comment-style': 'off',
         'capitalized-comments': 'off',
+        'unicorn/no-array-for-each': 'off',
     },
 }

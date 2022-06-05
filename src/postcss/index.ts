@@ -1,10 +1,22 @@
 import { FileType } from '../enum'
-import { handleCharacters } from '../utilities'
+import { customReplace, handleCharacters } from '../utilities'
 import { Options } from '../interfaces'
 
-export function transformSelector() {
+export function transformSelector(options: Options) {
 
     const processed = Symbol('processed')
+    const defaultSpaceBetweenItems = [ 'view', 'button', 'text', 'image' ]
+    const usersSpaceBetweenItems = options?.utilitiesSettings?.spaceBetweenItems || []
+    const spaceBetweenItems = Array.from(new Set([ ...defaultSpaceBetweenItems, ...usersSpaceBetweenItems ]))
+    const customReplacement = new Map()
+
+    /**
+     * A polyfill that is compatible 'space-[x,y]-\d' syntax
+     * Note that in mini program environment ':not()' selector can only be used when it's combined with other selectors
+     * e.g. view:not() works but the standalone :not() selector couldn't work
+     */
+    customReplacement.set(/^(\.-?space-\w)(-.+?)\s.*/, spaceBetweenItems.map(item => `$1$2:not($1-reverse) > ${ item }:not([hidden]):not(:first-child), $1$2$1-reverse > ${ item }:not([hidden]):not(:last-child)`).join(', '))
+    customReplacement.set(/^(\.-?space-\w-reverse).*/, spaceBetweenItems.map(item => `$1 > ${ item }:not([hidden])`).join(', '))
 
     return {
         postcssPlugin: 'transformSelectorName',
@@ -13,6 +25,7 @@ export function transformSelector() {
             if (!node[ processed ]) {
 
                 node.selector = handleCharacters(node.selector, FileType.Style)
+                node.selector = customReplace(node.selector, customReplacement)
                 node[ processed ] = true
 
             }

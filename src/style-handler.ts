@@ -5,7 +5,7 @@ import { transformSelector, transformValue } from './postcss'
 export function handleStyle(rawSource: string, option?: Options) {
 
     const processor = postcss()
-        .use(transformSelector)
+        .use(transformSelector(option))
 
     if (option?.enableRpx) {
         processor.use(transformValue(option))

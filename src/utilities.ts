@@ -63,3 +63,13 @@ export function handleCharacters(content, type: FileType) {
     return content
 
 }
+
+export function customReplace(raw: string, rules: Map<RegExp, string>) {
+
+    rules.forEach((target, exp) => {
+        raw = raw.replace(exp, target)
+    })
+
+    return raw
+
+}
