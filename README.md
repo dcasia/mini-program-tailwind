@@ -139,6 +139,7 @@ export default {
 | ----------- | ------- | ------ | ------------------------------- |
 | enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：MPX 项目](./examples/mpx)
@@ -226,6 +227,7 @@ import 'windi.css';
 | windiCSSConfigFile | String  | 读取项目根目录的配置文件 | 必要时手动设置 Windi CSS 配置文件的路径                |
 | enableRpx          | Boolean | false        | 是否开启自动转换至 rpx 单位值的功能（由于 Taro 自带该功能，默认关闭） |
 | designWidth        | Number  | 375          | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率          |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 | enableDebugLog     | Boolean | false        | 是否开启打印本插件的内部运行日志                         |
 
 #### 案例
@@ -334,6 +336,7 @@ import 'windi.css'
 | ----------- | ------- | ------ | ------------------------------- |
 | enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：uni-app Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-2)
@@ -428,6 +431,7 @@ import 'virtual:windi.css'
 | ----------- | ------- | ------ | ------------------------------- |
 | enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：uni-app Vue 3 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-3)
@@ -451,19 +455,19 @@ import 'virtual:windi.css'
 我们将本插件的核心功能解耦并打包进了 `universal-handler.js` 文件中，若你想在自定义的构建工具中集成本插件的核心功能，可以在工作流逻辑中引入 `universal-handler`：
 
 ```javascript
-const { handleSource } = require('@dcasia/mini-program-tailwind-webpack-plugin/universal-handler')
+const { handleTemplate, handleStyle } = require('@dcasia/mini-program-tailwind-webpack-plugin/universal-handler')
 ```
 
 处理 template:
 ```javascript
 const rawContent = '<view class="w-10 h-[0.5px] text-[#ffffff]"></view>'
-const handledTemplate = handleSource('template', rawContent, options) // 'template' 为常量，设置文件类型为模板文件
+const handledTemplate = handleTemplate(rawContent)
 ```
 
 处理 style:
 ```javascript
 const rawContent = '.h-\\[0\\.5px\\] {height: 0.5px;}'
-const handledStyle = handleSource('style', rawContent, options) // 'style' 为常量，设置文件类型为样式文件
+const handledStyle = handleStyle(rawContent, options)
 ```
 
 此后你便可以将处理过的字符串返回至工作流原本的流程中来生成最终的文件。
@@ -480,6 +484,9 @@ const handledStyle = handleSource('style', rawContent, options) // 'style' 为�
 | ----------- | ------- | ------ | ------------------------------- |
 | enableRpx   | Boolean | false  | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+
 
 #### 案例
 
@@ -529,6 +536,7 @@ const handledStyle = handleSource('style', rawContent, options) // 'style' 为�
 | **Fraction**: `translate-x-1/2` `w-8.5`                | ❌          | ✅         |
 | **Important**: `!p-1`                                  | ❌          | ✅         |
 | **RGB value infer**: `text-[rgb(25,25,25)]`            | ❌          | ✅         |
+| **Space between**: `space-y-2` `space-y-reverse`       | ❌          | ✅         |
 | **Variants**: `dark:bg-gray-800`                       | ❌          | ✅         |
 | **Variants groups**: `hover:(bg-gray-400 font-medium)` | ❌          | ✅         |
 | **Responsive**: `md:p-2`                               | ❌          | ✅         |
