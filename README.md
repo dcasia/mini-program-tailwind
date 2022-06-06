@@ -137,9 +137,9 @@ export default {
 
 | **名称**      | **类型**  | **默认** | **描述**                          |
 | ----------- | ------- | ------ | ------------------------------- |
-| enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
-| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
-| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| enableRpx   | Boolean | `true`   | 是否开启自动转换至 rpx 单位值的功能            |
+| designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：MPX 项目](./examples/mpx)
@@ -223,12 +223,12 @@ import 'windi.css';
 
 | **名称**             | **类型**  | **默认**      | **描述**                                   |
 | ------------------ | ------- | ------------ | ---------------------------------------- |
-| enableWindiCSS     | Boolean | true         | 是否开启插件自带的 Windi CSS                      |
+| enableWindiCSS     | Boolean | `true`         | 是否开启插件自带的 Windi CSS                      |
 | windiCSSConfigFile | String  | 读取项目根目录的配置文件 | 必要时手动设置 Windi CSS 配置文件的路径                |
-| enableRpx          | Boolean | false        | 是否开启自动转换至 rpx 单位值的功能（由于 Taro 自带该功能，默认关闭） |
-| designWidth        | Number  | 375          | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率          |
-| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
-| enableDebugLog     | Boolean | false        | 是否开启打印本插件的内部运行日志                         |
+| enableRpx          | Boolean | `false`        | 是否开启自动转换至 rpx 单位值的功能（由于 Taro 自带该功能，默认关闭） |
+| designWidth        | Number  | `375`         | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率          |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| enableDebugLog     | Boolean | `false`        | 是否开启打印本插件的内部运行日志                         |
 
 #### 案例
 
@@ -334,9 +334,9 @@ import 'windi.css'
 
 | **名称**      | **类型**  | **默认** | **描述**                          |
 | ----------- | ------- | ------ | ------------------------------- |
-| enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
-| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
-| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| enableRpx   | Boolean | `true`   | 是否开启自动转换至 rpx 单位值的功能            |
+| designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：uni-app Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-2)
@@ -429,9 +429,9 @@ import 'virtual:windi.css'
 
 | **名称**      | **类型**  | **默认** | **描述**                          |
 | ----------- | ------- | ------ | ------------------------------- |
-| enableRpx   | Boolean | true   | 是否开启自动转换至 rpx 单位值的功能            |
-| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
-| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| enableRpx   | Boolean | `true`   | 是否开启自动转换至 rpx 单位值的功能            |
+| designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：uni-app Vue 3 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-3)
@@ -482,10 +482,9 @@ const handledStyle = handleStyle(rawContent, options)
 
 | **名称**      | **类型**  | **默认** | **描述**                          |
 | ----------- | ------- | ------ | ------------------------------- |
-| enableRpx   | Boolean | false  | 是否开启自动转换至 rpx 单位值的功能            |
-| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
-| designWidth | Number  | 350    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
-| utilitiesSettings.spaceBetweenItems | `Array<string>`  | []   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| enableRpx   | Boolean | `false`  | 是否开启自动转换至 rpx 单位值的功能            |
+| designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
+| utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 
 #### 案例
