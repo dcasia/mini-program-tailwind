@@ -38,7 +38,7 @@
 
 <details>
 
-<summary>⚙️ 针对常规 Webpack 类小程序（以 MPX 为例）</summary>
+<summary>⚙️ 常规 Webpack 类小程序（以 MPX 为例）</summary>
 
 ### 常规 Webpack 类小程序（以 MPX 为例）
 
@@ -148,7 +148,7 @@ export default {
 
 <details>
 
-<summary>👽 针对 Taro 小程序</summary>
+<summary>👽 Taro 小程序</summary>
 
 ### Taro 小程序
 
@@ -240,7 +240,7 @@ import 'windi.css';
 
 <details>
 
-<summary>🔗 针对 uni-app 小程序</summary>
+<summary>🔗 uni-app 小程序</summary>
 
 ### uni-app 小程序
 
@@ -345,7 +345,7 @@ import 'windi.css'
 
 <details>
 
-<summary>🔩 针对常规 Vite 类小程序（以 uni-app 为例）</summary>
+<summary>🔩 常规 Vite 类小程序（以 uni-app 为例）</summary>
 
 ### 常规 Vite 类小程序（以 uni-app 为例）
 
@@ -440,7 +440,7 @@ import 'virtual:windi.css'
 
 <details>
 
-<summary>🛠 针对原生开发或自定义构建的小程序</summary>
+<summary>🛠 原生开发或自定义构建的小程序</summary>
 
 ### 原生开发或自定义构建工具的小程序
   
@@ -504,6 +504,7 @@ const handledStyle = handleStyle(rawContent, options)
 
 ## 陷阱
 - 在小程序中为了使组件样式可以被 Tailwind/Windi 的 CSS 产物作用到，我们需要在每一个组件的 JSON 配置文件中设置其[样式的作用域](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E7%BB%84%E4%BB%B6%E6%A0%B7%E5%BC%8F%E9%9A%94%E7%A6%BB) `styleIsolation`，否则即使 Tailwind/Windi CSS 工作正常也无法用来开发组件 UI。
+    > Taro 小程序不受该限制影响
     ```json
     {
       "component": true,
