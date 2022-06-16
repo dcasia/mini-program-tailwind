@@ -15,7 +15,7 @@ export function transformSelector(options: Options) {
      * Note that in mini program environment ':not()' selector can only be used when it's combined with other selectors
      * e.g. view:not() works but the standalone :not() selector couldn't work
      */
-    customReplacement.set(/^(\.-?space-\w)(-.+?).*/, spaceBetweenItems.map(item => `$1$2:not($1-reverse)>${ item }:not([hidden]):not(:first-child), $1$2$1-reverse>${ item }:not([hidden]):not(:last-child)`).join(', '))
+    customReplacement.set(/^(\.-?space-\w)(-.+?)\s?>.*/, spaceBetweenItems.map(item => `$1$2:not($1-reverse)>${ item }:not([hidden]):not(:first-child), $1$2$1-reverse>${ item }:not([hidden]):not(:last-child)`).join(', '))
     customReplacement.set(/^(\.-?space-\w-reverse).*/, spaceBetweenItems.map(item => `$1>${ item }:not([hidden])`).join(', '))
 
     return {
