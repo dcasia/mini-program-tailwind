@@ -85,7 +85,14 @@ const valueConvertor = {
 function transformAllValue(raw: string, targets: number[], unit: SourceUnit, options: Options) {
 
     for (const value of targets) {
-        raw = raw.replace(value + unit, valueConvertor[ unit ](value, options.designWidth) + TargerUnit.RPX)
+
+        /**
+         * Handle cases like '.5rem' '-.5rem' etc
+         */
+        const pattern = new RegExp((value + unit).replace(/^(-?)0(\.)/, '$10?$2').replace(/\./, '\\.'))
+
+        raw = raw.replace(pattern, valueConvertor[ unit ](value, options.designWidth) + TargerUnit.RPX)
+
     }
 
     return raw
