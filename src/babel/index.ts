@@ -10,6 +10,7 @@ const classFieldName = {
     [ TaroFramework.React ]: [ 'className' ],
     [ TaroFramework.Vue2 ]: [ 'class', 'staticClass' ],
     [ TaroFramework.Vue3 ]: [ 'class' ],
+    [ TaroFramework.Preact ]: [ 'className' ],
 }
 
 function isIdentifierTheClassField(path: babel.NodePath<babel.types.ObjectProperty>, framework: TaroFramework) {
