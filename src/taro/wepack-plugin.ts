@@ -9,6 +9,7 @@ const frameworkModuleCharacteristics = {
     [ TaroFramework.React ]: [ '.jsx', '.tsx' ],
     [ TaroFramework.Vue2 ]: [ 'type=template' ],
     [ TaroFramework.Vue3 ]: [ 'type=template' ],
+    [ TaroFramework.Preact ]: [ '.jsx', '.tsx' ],
 }
 
 export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInstance {

@@ -7,6 +7,7 @@ export enum TaroFramework {
     React = 'react',
     Vue2 = 'vue',
     Vue3 = 'vue3',
+    Preact = 'preact',
 }
 
 export enum TaroPlatform {

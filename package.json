@@ -1,88 +1,88 @@
 {
-  "name": "@dcasia/mini-program-tailwind-webpack-plugin",
-  "version": "1.4.2",
-  "description": "让你的小程序用上原汁原味的 Tailwind/Windi CSS",
-  "keywords": [
-    "mini-program",
-    "tailwind",
-    "tailwindcss",
-    "windicss",
-    "wechat",
-    "taro",
-    "css",
-    "postcss",
-    "uni-app",
-    "miniprogram",
-    "weapp",
-    "atomic-css",
-    "unocss"
-  ],
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": "./dist/index.js",
-    "./taro": "./dist/taro.js",
-    "./universal-handler": "./dist/universal-handler.js",
-    "./rollup": "./dist/rollup.js"
-  },
-  "types": "dist/dts/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "taro": [
-        "dist/dts/taro/index.d.ts"
-      ],
-      "universal-handler": [
-        "dist/dts/universal-handler.d.ts"
-      ],
-      "rollup": [
-        "dist/dts/rollup/index.d.ts"
-      ]
+    "name": "@dcasia/mini-program-tailwind-webpack-plugin",
+    "version": "1.4.3",
+    "description": "让你的小程序用上原汁原味的 Tailwind/Windi CSS",
+    "keywords": [
+        "mini-program",
+        "tailwind",
+        "tailwindcss",
+        "windicss",
+        "wechat",
+        "taro",
+        "css",
+        "postcss",
+        "uni-app",
+        "miniprogram",
+        "weapp",
+        "atomic-css",
+        "unocss"
+    ],
+    "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": "./dist/index.js",
+        "./taro": "./dist/taro.js",
+        "./universal-handler": "./dist/universal-handler.js",
+        "./rollup": "./dist/rollup.js"
+    },
+    "types": "dist/dts/index.d.ts",
+    "typesVersions": {
+        "*": {
+            "taro": [
+                "dist/dts/taro/index.d.ts"
+            ],
+            "universal-handler": [
+                "dist/dts/universal-handler.d.ts"
+            ],
+            "rollup": [
+                "dist/dts/rollup/index.d.ts"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "jest",
+        "lint": "eslint . --ext .ts --fix",
+        "build": "rollup --config rollup.config.ts",
+        "prepare": "npm run build",
+        "publish": "npm publish --public",
+        "publish:beta": "npm publish --public --tag beta"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dcasia/mini-program-tailwind.git"
+    },
+    "author": "Ryan Wu <toryanwu@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dcasia/mini-program-tailwind/issues"
+    },
+    "homepage": "https://github.com/dcasia/mini-program-tailwind#readme",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^21.0.2",
+        "@rollup/plugin-multi-entry": "^4.1.0",
+        "@rollup/plugin-typescript": "^8.3.1",
+        "@tarojs/service": "^3.4.9",
+        "@types/jest": "^27.4.1",
+        "@typescript-eslint/eslint-plugin": "^5.13.0",
+        "@typescript-eslint/parser": "^5.13.0",
+        "eslint": "^8.10.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
+        "eslint-plugin-import": "^2.25.4",
+        "jest": "^27.5.1",
+        "rollup": "^2.68.0",
+        "rollup-plugin-dts": "^4.2.1",
+        "tslib": "^2.4.0",
+        "vite": "^2.9.9",
+        "webpack": "^5.69.1"
+    },
+    "dependencies": {
+        "@babel/core": "^7.17.5",
+        "@vivaxy/wxml": "^2.1.0",
+        "postcss": "^8.4.7",
+        "webpack-sources": "^1.4.3",
+        "windicss-webpack-plugin": "^1.7.2"
     }
-  },
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint . --ext .ts --fix",
-    "build": "rollup --config rollup.config.ts",
-    "prepare": "npm run build",
-    "publish": "npm publish --public",
-    "publish:beta": "npm publish --public --tag beta"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dcasia/mini-program-tailwind.git"
-  },
-  "author": "Ryan Wu <toryanwu@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dcasia/mini-program-tailwind/issues"
-  },
-  "homepage": "https://github.com/dcasia/mini-program-tailwind#readme",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.2",
-    "@rollup/plugin-multi-entry": "^4.1.0",
-    "@rollup/plugin-typescript": "^8.3.1",
-    "@tarojs/service": "^3.4.9",
-    "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
-    "eslint": "^8.10.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
-    "eslint-plugin-import": "^2.25.4",
-    "jest": "^27.5.1",
-    "rollup": "^2.68.0",
-    "rollup-plugin-dts": "^4.2.1",
-    "tslib": "^2.4.0",
-    "vite": "^2.9.9",
-    "webpack": "^5.69.1"
-  },
-  "dependencies": {
-    "@babel/core": "^7.17.5",
-    "@vivaxy/wxml": "^2.1.0",
-    "postcss": "^8.4.7",
-    "webpack-sources": "^1.4.3",
-    "windicss-webpack-plugin": "^1.7.2"
-  }
 }
