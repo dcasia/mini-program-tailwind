@@ -160,6 +160,7 @@ export default {
 > - React
 > - Vue 2
 > - Vue 3
+> - Preact
 >
 > 同时也兼容在混合原生组件开发中使用 Tailwind/Windi CSS
 
@@ -547,7 +548,7 @@ const handledStyle = handleStyle(rawContent, options)
 
 - Webpack >= `4.0.0`
 - Taro >= `3.0.0`
-- MPX
+- MPX >= `2.7.5`
 - uni-app
 
 
