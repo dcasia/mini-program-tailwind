@@ -1,16 +1,14 @@
 <template>
-  <list>
-  </list>
-  <view class="w-screen h-[200px] bg-[#00ff00] !bg-[#0000ff] dark:bg-white"></view>
-  <view class="w-screen h-[12.5rem] bg-yellow-500 transform translate-y-1/2"></view>
+  <view class="pt-[45vh] bg-[#b5b5b5] h-screen pl-7.5 {{true ? 'text-[50px]' : ''}}">
+    <text wx:class="{{ ['font-bold', 'text-[#ffffff]'] }}">{{ msg }}</text>
+  </view>
 </template>
 
 <script lang="ts" src="./index.ts"></script>
 
-<script type="application/json">
-  {
-    "usingComponents": {
-      "list": "../components/list"
-    }
+<style>
+  /* @apply doesn't work here */
+  .index {
+    @apply pt-[45vh];
   }
-</script>
+</style>
