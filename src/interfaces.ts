@@ -6,6 +6,7 @@ export interface Options {
     designWidth?: number,
     utilitiesSettings?: {
         spaceBetweenItems?: string[],
+        divideItems?: string[],
     },
 }
 
