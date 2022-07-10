@@ -7,7 +7,7 @@
 <script lang="ts" src="./index.ts"></script>
 
 <style>
-  /* @apply doesn't work here */
+  /* @apply doesn't work here due to a bug in MPX */
   .index {
     @apply pt-[45vh];
   }
