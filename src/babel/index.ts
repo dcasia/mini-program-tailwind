@@ -102,18 +102,91 @@ export function replaceClassFieldsValuePlugin({ types: t }): PluginItem {
 
 }
 
+export function replaceStringifiedVNodeValuePlugin({ types: t }): PluginItem {
+
+    let isVisitingClassNameField = false
+
+    const replaceMarker = '__MP_TW_PLUGIN_STRINGIFIED_VNODE__'
+    const matchRule = /(class=\\?")(.+?)(\\?")/g
+
+    return {
+        visitor: {
+
+            /**
+             * Assuming there shouldn't have nested class fields in any cases
+             */
+            ObjectProperty: {
+                enter(path, state) {
+
+                    if (isIdentifierTheClassField(path, state.opts.framework)) {
+                        isVisitingClassNameField = true
+                    }
+
+                },
+                exit(path, state) {
+
+                    if (isIdentifierTheClassField(path, state.opts.framework)) {
+                        isVisitingClassNameField = false
+                    }
+
+                },
+            },
+            StringLiteral(path) {
+
+                if (!isVisitingClassNameField) {
+
+                    let raw = path.node.value
+
+                    const classAttrs = Array.from(raw.matchAll(matchRule))
+                    const classNames = classAttrs.map(item => item[ 2 ]) // item[2] is the $2 group of the match rule
+
+                    if (classNames.length) {
+
+                        raw = raw.replace(matchRule, `class=\\"${ replaceMarker }\\"`)
+
+                        for (const className of classNames) {
+
+                            const newClassName = handleClassNameInTemplate(className)
+
+                            if (newClassName !== className) {
+                                recordClassNameChanges(className, newClassName)
+                            }
+
+                            raw = raw.replace(replaceMarker, newClassName)
+
+                        }
+
+                        path.replaceWith(t.stringLiteral(raw))
+                        path.skip()
+
+                    }
+
+                }
+
+            },
+        },
+    }
+
+}
+
 export function collectRawAndModified(rawContent: string, framework: TaroFramework) {
 
     cleanClassNameChanges()
 
-    babel.transformSync(rawContent, {
-        plugins: [
-            [
-                replaceClassFieldsValuePlugin, {
-                    framework,
-                },
-            ],
+    const plugins: PluginItem[] = [
+        [
+            replaceClassFieldsValuePlugin, {
+                framework,
+            },
         ],
+    ]
+
+    if (framework === TaroFramework.Vue3) {
+        plugins.push(replaceStringifiedVNodeValuePlugin)
+    }
+
+    babel.transformSync(rawContent, {
+        plugins,
         configFile: false,
     })
 
