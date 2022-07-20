@@ -1,5 +1,7 @@
 import { FileType } from './enum'
 
+export const componentNames = [ 'button', 'checkbox', 'checkbox-group', 'editor', 'form', 'input', 'label', 'picker', 'picker-view', 'picker-view-column', 'radio', 'radio-group', 'slider', 'switch', 'textarea', 'navigator', 'audio', 'camera', 'image', 'live-player', 'live-pusher', 'video', 'map', 'canvas' ]
+
 export const regExpJS = /.+\.js$/
 
 export const regExpVue = /.+\.vue$/
