@@ -1,6 +1,7 @@
 import { FileType } from '../enum'
 import { customReplace, handleCharacters } from '../utilities'
 import { Options } from '../interfaces'
+import { intrinsicComponents } from '../utilities'
 
 export function transformSelector(options: Options) {
 
@@ -10,6 +11,8 @@ export function transformSelector(options: Options) {
     const spaceBetweenItems = Array.from(new Set([ ...defaultSpaceBetweenItems, ...usersSpaceBetweenItems ]))
     const userDivideBetweenItems = options?.utilitiesSettings?.divideItems || []
     const divideItems = Array.from(new Set([ ...defaultSpaceBetweenItems, ...userDivideBetweenItems ]))
+    const customComponents = options?.utilitiesSettings?.customComponents || []
+    const allComponents = Array.from(new Set([ ...intrinsicComponents, ...customComponents ]))
     const customReplacement = new Map()
 
     /**
@@ -21,6 +24,7 @@ export function transformSelector(options: Options) {
     customReplacement.set(/^(\.-?space-\w-reverse).*/, spaceBetweenItems.map(item => `$1>${ item }:not([hidden])`).join(', '))
     customReplacement.set(/^(\.-?divide-\w+)(-.+?)?\s?>.*/, divideItems.map(item => `$1$2:not($1-reverse)>${ item }:not([hidden]):not(:first-child), $1$2$1-reverse>${ item }:not([hidden]):not(:last-child)`).join(', '))
     customReplacement.set(/^(\.-?divide-\w-reverse).*/, divideItems.map(item => `$1>${ item }:not([hidden])`).join(', '))
+    customReplacement.set('*', allComponents.join(', '))
 
     return {
         postcssPlugin: 'transformSelectorName',
