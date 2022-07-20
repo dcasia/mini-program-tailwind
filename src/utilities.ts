@@ -1,6 +1,6 @@
 import { FileType } from './enum'
 
-export const componentNames = [ 'button', 'checkbox', 'checkbox-group', 'editor', 'form', 'input', 'label', 'picker', 'picker-view', 'picker-view-column', 'radio', 'radio-group', 'slider', 'switch', 'textarea', 'navigator', 'audio', 'camera', 'image', 'live-player', 'live-pusher', 'video', 'map', 'canvas' ]
+export const intrinsicComponents = [ 'cover-image', 'cover-view', 'movable-area', 'movable-view', 'scroll-view', 'swiper', 'swiper-item', 'view', 'icon', 'progree', 'rich-text', 'text', 'button', 'checkbox', 'checkbox-group', 'editor', 'form', 'input', 'label', 'picker', 'picker-view', 'picker-view-column', 'radio', 'radio-group', 'slider', 'switch', 'textarea', 'navigator', 'audio', 'camera', 'image', 'live-player', 'live-pusher', 'video', 'map', 'canvas' ]
 
 export const regExpJS = /.+\.js$/
 

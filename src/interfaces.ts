@@ -7,6 +7,7 @@ export interface Options {
     utilitiesSettings?: {
         spaceBetweenItems?: string[],
         divideItems?: string[],
+        customComponents?: string[],
     },
 }
 
