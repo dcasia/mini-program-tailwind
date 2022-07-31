@@ -19,7 +19,7 @@
 
 ## 介绍
 
-由于小程序本身不支持由 Tailwind/Windi CSS 产生的选择器名称中包含的一些特殊转义字符（如 `\[` `\!` `\.` 等），这使得你在开发小程序时无法使用一些本该在开发 Web 应用时使用的得心应手的灵活语法与 JIT/Value auto-infer 功能，如 `w-[30px]` `translate-x-1/2` `!bg-[#ff0000]` 等。这无疑对我们的开发效率与心智负担带来了不小的影响。
+由于小程序本身不支持由 Tailwind/Windi CSS 产生的选择器名称中包含的一些特殊转义字符（如 `\[` `\!` `\.` 等），这使得你在开发小程序时无法使用一些本该在开发 Web 应用时使用的得心应手的灵活语法与 Arbitrary values/Value auto-infer 功能，如 `w-[30px]` `translate-x-1/2` `!bg-[#ff0000]` 等。这无疑对我们的开发效率与心智负担带来了不小的影响。
 
 为了突破这一限制，我们开发了这一款插件来帮助你在使用 Tailwind/Windi CSS 开发小程序时仍然保持着与开发 Web 应用高度一致的开发体验，你不再需要关注因为哪些字符串不被支持而不得不换一种写法的问题，而是继续**按照 Tailwind/Windi CSS 的官方语法继续编写你的小程序样式**，背后的兼容工作则由这款插件静默处理。
 
@@ -140,6 +140,7 @@ export default {
 | enableRpx   | Boolean | `true`   | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
 | utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| utilitiesSettings.divideItems | `Array<string>` | `[]` | 使用了 Divide width utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
 
 #### 案例
 > [集成案例：MPX 项目](./examples/mpx)
@@ -229,6 +230,8 @@ import 'windi.css';
 | enableRpx          | Boolean | `false`        | 是否开启自动转换至 rpx 单位值的功能（由于 Taro 自带该功能，默认关闭） |
 | designWidth        | Number  | `375`         | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率          |
 | utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| utilitiesSettings.divideItems       | `Array<string>` | `[]` | 使用了 Divide width utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。        |
+| utilitiesSettings.customComponents  | `Array<string>` | `[]` | 对于使用 Uno CSS 作为 Atomic CSS 引擎的开发者需要根据项目情况配置。默认已包含所有小程序自带的组件名称，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。                  |
 | enableDebugLog     | Boolean | `false`        | 是否开启打印本插件的内部运行日志                         |
 
 #### 案例
@@ -338,6 +341,8 @@ import 'windi.css'
 | enableRpx   | Boolean | `true`   | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
 | utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| utilitiesSettings.divideItems       | `Array<string>` | `[]` | 使用了 Divide width utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。        |
+| utilitiesSettings.customComponents  | `Array<string>` | `[]` | 对于使用 Uno CSS 作为 Atomic CSS 引擎的开发者需要根据项目情况配置。默认已包含所有小程序自带的组件名称，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。                  |
 
 #### 案例
 > [集成案例：uni-app Vue 2 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-2)
@@ -433,6 +438,8 @@ import 'virtual:windi.css'
 | enableRpx   | Boolean | `true`   | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
 | utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| utilitiesSettings.divideItems       | `Array<string>` | `[]` | 使用了 Divide width utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。        |
+| utilitiesSettings.customComponents  | `Array<string>` | `[]` | 对于使用 Uno CSS 作为 Atomic CSS 引擎的开发者需要根据项目情况配置。默认已包含所有小程序自带的组件名称，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。                  |
 
 #### 案例
 > [集成案例：uni-app Vue 3 项目](https://github.com/dcasia/mini-program-tailwind/tree/development/examples/uni-app/vue-3)
@@ -486,6 +493,8 @@ const handledStyle = handleStyle(rawContent, options)
 | enableRpx   | Boolean | `false`  | 是否开启自动转换至 rpx 单位值的功能            |
 | designWidth | Number  | `350`    | 设计稿的像素宽度值，该尺寸会影响 rpx 转换过程中的计算比率 |
 | utilitiesSettings.spaceBetweenItems | `Array<string>`  | `[]`   | 使用了 Space Between utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。 |
+| utilitiesSettings.divideItems       | `Array<string>` | `[]` | 使用了 Divide width utilities 的容器中的子组件的名称。默认已包含 view, button, text, image 四个常用组件，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。        |
+| utilitiesSettings.customComponents  | `Array<string>` | `[]` | 对于使用 Uno CSS 作为 Atomic CSS 引擎的开发者需要根据项目情况配置。默认已包含所有小程序自带的组件名称，所以大部分情况下开发者不需要配置该项。如需新增则可以在数组中添加新的组件名称。                  |
 
 
 #### 案例
@@ -526,6 +535,19 @@ const handledStyle = handleStyle(rawContent, options)
     > [Issue #3](https://github.com/dcasia/wechat-mini-program-tailwind/issues/3)
     > </details>
 
+- 对于原生小程序中[外部样式类](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html#%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F%E7%B1%BB)  `externalClasses` 的声明，插件仅支持将该 `externalClasses` 名称声明为 `'class'` 的做法，不支持其他名称。
+    ```javascript
+    Component({
+      externalClasses: [ 'class' ]
+    })
+    ```
+    > <details>
+    > <summary>相关 issue</summary>
+    >    
+    > [Issue #44](https://github.com/dcasia/mini-program-tailwind/issues/44)
+    > </details>
+
+
 
 - - -
 ## 功能对比
@@ -533,22 +555,24 @@ const handledStyle = handleStyle(rawContent, options)
 | **语法**                                                 | **不使用本插件** | **使用本插件** |
 | ------------------------------------------------------ | ---------- | --------- |
 | **Regular**: `h-10` `text-white`                       | ✅          | ✅         |
-| **JIT/Value infer**: `t-[25px]` `bg-[#ffffff]`         | ❌          | ✅         |
+| **Arbitrary values/Value infer**: `t-[25px]` `bg-[#ffffff]`         | ❌          | ✅         |
 | **Fraction**: `translate-x-1/2` `w-8.5`                | ❌          | ✅         |
 | **Important**: `!p-1`                                  | ❌          | ✅         |
 | **RGB value infer**: `text-[rgb(25,25,25)]`            | ❌          | ✅         |
-| **Space between**: `space-y-2` `space-y-reverse`       | ❌          | ✅         |
+| **Space between**: `space-y-2` `space-y-reverse`          | ❌          | ✅         |
+| **Divide width**: `divide-x-2` `divide-y-reverse`            | ❌          | ✅         |
 | **Variants**: `dark:bg-gray-800`                       | ❌          | ✅         |
 | **Variants groups**: `hover:(bg-gray-400 font-medium)` | ❌          | ✅         |
 | **Responsive**: `md:p-2`                               | ❌          | ✅         |
+| **Universal selector**: `*`                                     | ❌          | ✅         |
 | `rpx` value transformed from `rem` and `px` value      | ❌          | ✅         |
 
 - - -
 ## 兼容范围
 
-- Webpack >= `4.0.0`
-- Taro >= `3.0.0`
-- MPX >= `2.7.5`
+- Webpack `>= 4.0.0`
+- Taro `>= 3.0.0 && < 3.5.0`
+- MPX `>= 2.7.5`
 - uni-app
 
 
