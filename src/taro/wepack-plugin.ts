@@ -8,7 +8,7 @@ import { regExpJS } from '../utilities'
 const frameworkModuleCharacteristics = {
     [ TaroFramework.React ]: [ '.jsx', '.tsx' ],
     [ TaroFramework.Vue2 ]: [ 'type=template' ],
-    [ TaroFramework.Vue3 ]: [ 'type=template' ],
+    [ TaroFramework.Vue3 ]: [ 'type=template', 'type=script&setup=true' ],
     [ TaroFramework.Preact ]: [ '.jsx', '.tsx' ],
 }
 
