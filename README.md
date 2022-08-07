@@ -571,7 +571,7 @@ const handledStyle = handleStyle(rawContent, options)
 ## 兼容范围
 
 - Webpack `>= 4.0.0`
-- Taro `>= 3.0.0 && < 3.5.0`
+- Taro `>= 3.4.0`
 - MPX `>= 2.7.5`
 - uni-app
 

@@ -2,7 +2,7 @@ import { TaroPluginOptions } from './../interfaces'
 import WindiCSSWebpackPlugin, { WindiCSSWebpackPluginOptions } from 'windicss-webpack-plugin'
 import MiniProgramTailwindWebpackPlugin from '../index'
 import { IPluginContext } from '@tarojs/service'
-import TaroVNodeTailwindWebpackPlugin from './wepack-plugin'
+import TaroVNodeTailwindWebpackPlugin from './webpack-plugin'
 import { TaroFramework, TaroPlatform } from '../enum'
 
 export default (ctx: IPluginContext, options: TaroPluginOptions) => {
