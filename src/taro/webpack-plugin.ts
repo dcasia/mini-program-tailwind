@@ -8,7 +8,7 @@ import { regExpJS } from '../utilities'
 const frameworkModuleCharacteristics = {
     [ TaroFramework.React ]: [ '.jsx', '.tsx' ],
     [ TaroFramework.Vue2 ]: [ 'type=template' ],
-    [ TaroFramework.Vue3 ]: [ 'type=template', 'type=script&setup=true' ],
+    [ TaroFramework.Vue3 ]: [ 'type=template', 'setup=true' ],
     [ TaroFramework.Preact ]: [ '.jsx', '.tsx' ],
 }
 
@@ -56,6 +56,9 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                         }
 
                         for (const module of Array.from(modules)) {
+
+                            // @ts-ignore
+                            console.log(module?._source?._valueAsString)
 
                             for (const charc of this.moduleCharcs) {
 
