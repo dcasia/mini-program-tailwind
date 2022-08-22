@@ -57,9 +57,6 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                         for (const module of Array.from(modules)) {
 
-                            // @ts-ignore
-                            console.log(module?._source?._valueAsString)
-
                             for (const charc of this.moduleCharcs) {
 
                                 // @ts-ignore
