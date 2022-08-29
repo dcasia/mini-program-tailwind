@@ -60,11 +60,12 @@
     },
     "homepage": "https://github.com/dcasia/mini-program-tailwind#readme",
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^21.0.2",
+        "@rollup/plugin-commonjs": "^21.1.0",
         "@rollup/plugin-multi-entry": "^4.1.0",
         "@rollup/plugin-typescript": "^8.3.1",
         "@tarojs/service": "^3.4.9",
         "@types/jest": "^27.4.1",
+        "@types/micromatch": "^4.0.2",
         "@typescript-eslint/eslint-plugin": "^5.13.0",
         "@typescript-eslint/parser": "^5.13.0",
         "eslint": "^8.10.0",
@@ -75,12 +76,14 @@
         "rollup": "^2.68.0",
         "rollup-plugin-dts": "^4.2.1",
         "tslib": "^2.4.0",
+        "typescript": "^4.7.4",
         "vite": "^2.9.9",
         "webpack": "^5.69.1"
     },
     "dependencies": {
         "@babel/core": "^7.17.5",
         "@vivaxy/wxml": "^2.1.0",
+        "micromatch": "^4.0.5",
         "postcss": "^8.4.7",
         "webpack-sources": "^1.4.3",
         "windicss-webpack-plugin": "^1.7.2"

@@ -8,6 +8,7 @@ export interface Options {
         spaceBetweenItems?: string[],
         divideItems?: string[],
         customComponents?: string[],
+        customAttributes?: Record<string, string | string[]>,
     },
 }
 
