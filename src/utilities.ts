@@ -33,6 +33,7 @@ const charactersMap = {
     ',': '-2c-',
     '%': '-p-',
     '\'': '-q-',
+    '+': '-a-',
 }
 
 const specialCharactersMap = {
