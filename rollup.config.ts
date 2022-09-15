@@ -13,7 +13,6 @@ export default defineConfig([
             './universal-handler',
             '@babel/core',
             '@vivaxy/wxml',
-            'webpack-sources',
         ],
         plugins: [
             typescript(
@@ -32,7 +31,6 @@ export default defineConfig([
             '@tarojs/service',
             '@babel/core',
             '@vivaxy/wxml',
-            'webpack-sources',
             'windicss-webpack-plugin',
         ],
         plugins: [
