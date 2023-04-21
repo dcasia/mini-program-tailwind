@@ -18,6 +18,10 @@ export function handleTemplate(rawSource: string) {
             if (node.attributes.class) {
                 node.attributes.class = handleClassNameInTemplate(node.attributes.class)
             }
+            
+            if (node.attributes.virtualHostClass) {
+                node.attributes.virtualHostClass = node.attributes.class
+            }
 
         }
 
