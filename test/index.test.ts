@@ -73,3 +73,33 @@ test('css value infer', () => {
     expect(handledTemplate).toBe('.h--0-d-5px- {height: 0.5px;}')
 
 })
+
+test('customAttributes', () => {
+
+    const template = `<view class="w-[0.5px] w-0.5px w-[2rpx] w-2rpx" custom-class="w-[2rpx]"></view>`
+    const handledTemplate = handleSource('template', template, {
+        utilitiesSettings: {
+            customAttributes: {
+                'view': ['class', 'custom-class'],
+            }
+        }
+    })
+
+    expect(handledTemplate).toBe('<view class="w--0-d-5px- w-0-d-5px w--2rpx- w-2rpx" custom-class="w--2rpx-"></view>')
+
+})
+
+test('customAttributes match', () => {
+
+    const template = `<custom-component class="w-[0.5px] w-0.5px w-[2rpx] w-2rpx" custom-class="w-[2rpx]"></custom-component>`
+    const handledTemplate = handleSource('template', template, {
+        utilitiesSettings: {
+            customAttributes: {
+                'custom-*': ['custom-class'],
+            }
+        }
+    })
+
+    expect(handledTemplate).toBe('<custom-component class="w--0-d-5px- w-0-d-5px w--2rpx- w-2rpx" custom-class="w--2rpx-"></custom-component>')
+
+})

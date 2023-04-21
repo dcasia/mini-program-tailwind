@@ -1,14 +1,15 @@
 import * as wxml from '@vivaxy/wxml'
+import micromatch from 'micromatch'
 import { handleCharacters } from './utilities'
 import { FileType } from './enum'
 import { replaceStringLiteralPlugin } from './babel'
 import * as babel from '@babel/core'
+import type { Options } from './interfaces'
 
 const matchScriptsInsideClassNames = /({{)(.+?)(}})/g
 const replaceMarker = '__MP_TW_PLUGIN_REPLACE__'
 
-export function handleTemplate(rawSource: string) {
-
+export function handleTemplate(rawSource: string, options?: Options) {
     const parsed = wxml.parse(rawSource)
 
     wxml.traverse(parsed, node => {
@@ -23,6 +24,28 @@ export function handleTemplate(rawSource: string) {
                 node.attributes.virtualHostClass = node.attributes.class
             }
 
+            if (options?.utilitiesSettings?.customAttributes) {
+
+                for (const [match, attrs] of Object.entries(options.utilitiesSettings.customAttributes)) {
+
+                    if (/^[\w-]+$/.test(match) ? match === node.tagName : micromatch.isMatch(node.tagName, match)) {
+                        const _attrs = Array.isArray(attrs) ? attrs : [attrs]
+    
+                        for (const attrKey of _attrs) {
+
+                            // skip class because it has already been converted
+                            if (attrKey === 'class') continue
+
+                            if (node.attributes[attrKey]) {
+                                node.attributes[attrKey] = handleClassNameInTemplate(node.attributes[attrKey])
+                            }
+
+                        }
+                    }
+
+                }
+
+            }
         }
 
     })

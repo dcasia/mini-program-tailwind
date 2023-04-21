@@ -10,7 +10,7 @@ export function handleSource(fileType: FileType, source: string, options?: Optio
     }
 
     if (fileType === FileType.Template) {
-        return handleTemplate(source)
+        return handleTemplate(source, options)
     }
 
 }

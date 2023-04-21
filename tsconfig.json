@@ -5,7 +5,8 @@
       // optional - in general it's a good practice to decouple declaration files from your actual transpiled JavaScript files
       "declarationDir": "dts",
       // optional if you're using babel to transpile TS - JS
-      "emitDeclarationOnly": true
+      "emitDeclarationOnly": true,
+      "esModuleInterop": true
     },
     "include": ["src/**/*"]
 }
