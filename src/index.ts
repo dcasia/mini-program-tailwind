@@ -1,10 +1,9 @@
-import { Compiler, WebpackPluginInstance, sources } from 'webpack'
+import { Compiler, WebpackPluginInstance } from 'webpack'
 import { Options } from './interfaces'
 import { handleSource } from './universal-handler'
 import { isStyleFile, isTemplateFile } from './utilities'
 import { FileType } from './enum'
-
-const { ConcatSource } = sources 
+import { ConcatSource } from 'webpack-sources'
 
 export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginInstance {
 
@@ -27,7 +26,8 @@ export default class MiniProgramTailwindWebpackPlugin implements WebpackPluginIn
         if (isWebpackV5) {
 
             const { webpack } = compiler
-            const { Compilation } = webpack
+            const { sources, Compilation } = webpack
+            const { ConcatSource } = sources
 
             compiler.hooks.thisCompilation.tap(
                 MiniProgramTailwindWebpackPlugin.pluginName,

@@ -1,5 +1,6 @@
 import { defineConfig } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
+import commonjs from '@rollup/plugin-commonjs'
 
 export default defineConfig([
     {
@@ -13,6 +14,7 @@ export default defineConfig([
             './universal-handler',
             '@babel/core',
             '@vivaxy/wxml',
+            'webpack-sources',
         ],
         plugins: [
             typescript(
@@ -31,7 +33,9 @@ export default defineConfig([
             '@tarojs/service',
             '@babel/core',
             '@vivaxy/wxml',
+            'webpack-sources',
             'windicss-webpack-plugin',
+            'micromatch',
         ],
         plugins: [
             typescript(
@@ -49,6 +53,7 @@ export default defineConfig([
             'postcss',
             '@babel/core',
             '@vivaxy/wxml',
+            'micromatch',
         ],
         plugins: [
             typescript(
@@ -66,11 +71,13 @@ export default defineConfig([
             '@babel/core',
             '@vivaxy/wxml',
             'postcss',
+            'micromatch',
         ],
         plugins: [
             typescript(
                 { tsconfig: './tsconfig.json' },
             ),
+            commonjs(),
         ],
     },
     // {

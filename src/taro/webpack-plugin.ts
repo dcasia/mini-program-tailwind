@@ -1,10 +1,9 @@
 import { TaroWebpackPluginOptions } from '../interfaces'
-import { Compiler, WebpackPluginInstance, sources } from 'webpack'
+import { Compiler, WebpackPluginInstance } from 'webpack'
 import { collectRawAndModified } from '../babel'
+import { ConcatSource } from 'webpack-sources'
 import { TaroFramework } from '../enum'
 import { regExpJS } from '../utilities'
-
-const { ConcatSource } = sources 
 
 const frameworkModuleCharacteristics = {
     [ TaroFramework.React ]: [ '.jsx', '.tsx' ],
@@ -82,7 +81,8 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                 if (isWebpackV5) {
 
                     const { webpack } = compiler
-                    const { Compilation } = webpack
+                    const { sources, Compilation } = webpack
+                    const { ConcatSource } = sources
 
                     compilation.hooks.processAssets.tap(
                         {

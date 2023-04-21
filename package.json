@@ -82,5 +82,8 @@
         "@vivaxy/wxml": "^2.1.0",
         "postcss": "^8.4.7",
         "windicss-webpack-plugin": "^1.7.2"
+    },
+    "peerDependencies": {
+        "webpack-sources": ">=1.4.3"
     }
 }
