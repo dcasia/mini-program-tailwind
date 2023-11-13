@@ -3,7 +3,7 @@ import { Compiler, WebpackPluginInstance } from 'webpack'
 import { collectRawAndModified } from '../babel'
 import { ConcatSource } from 'webpack-sources'
 import { TaroFramework } from '../enum'
-import { regExpJS } from '../utilities'
+import { escapeRegExp, regExpJS } from '../utilities'
 
 const frameworkModuleCharacteristics = {
     [ TaroFramework.React ]: [ '.jsx', '.tsx' ],
@@ -57,6 +57,8 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                         for (const module of Array.from(modules)) {
 
+                            // Test if current module path has potential characteristic
+                            // so that it can recognize which module needs to be further processed
                             for (const charc of this.moduleCharcs) {
 
                                 // @ts-ignore
@@ -64,7 +66,12 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
 
                                 // @ts-ignore
                                 if (module?.resource?.includes(charc) && moduleRawContent) {
-                                    rawVsModifiedPairs.push(...collectRawAndModified(moduleRawContent, this.options.framework))
+
+                                    const pairs = collectRawAndModified(moduleRawContent, this.options.framework)
+
+                                    // Search and gather class names to be replaced in target module
+                                    rawVsModifiedPairs.push(...pairs)
+
                                 }
 
                             }
@@ -135,17 +142,13 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
             for (const pairIndex in rawVsModifiedPairs) {
 
                 const pair = rawVsModifiedPairs[ pairIndex ]
-                const rawContent = pair[ 0 ]
-                const newContent = pair[ 1 ]
+                const rawToken = pair[ 0 ]
+                const newToken = pair[ 1 ]
+                const escapeRawToken = escapeRegExp(rawToken)
+                const regExp = new RegExp(`(['"])${ escapeRawToken }(['"])`)
 
-                /**
-                 *  Todo: implement more strict match here
-                 *  E.g. Combining with 'class:' prefix or finding the target by temporarily placing a mark
-                 * */
+                rawSource = rawSource.replace(regExp, (_quotedToken, quote1, quote2) => {
 
-                if (rawSource.includes(rawContent)) {
-
-                    rawSource = rawSource.replace(rawContent, newContent)
                     removedPair.push(pair)
                     hasTheAssetChanged = true
 
@@ -153,7 +156,9 @@ export default class TaroVNodeTailwindWebpackPlugin implements WebpackPluginInst
                         console.log('[mini-program-tailwind-plugin]: Replaced', pair)
                     }
 
-                }
+                    return quote1 + newToken + quote2
+
+                })
 
             }
 

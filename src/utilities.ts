@@ -12,6 +12,10 @@ export const regExpStyle = /.+\.(?:wx|ac|jx|tt|q|c)ss$/
 
 export const regExpTemplate = /.+\.(wx|ax|jx|ks|tt|q)ml$/
 
+export function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
 export function isStyleFile(filename) {
     return regExpStyle.test(filename)
 }
