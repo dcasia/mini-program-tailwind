@@ -70,7 +70,6 @@
         "@typescript-eslint/parser": "^5.13.0",
         "eslint": "^8.10.0",
         "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-plugin-digital-creative": "github:dcasia/digital-creative-eslint-plugin",
         "eslint-plugin-import": "^2.25.4",
         "jest": "^27.5.1",
         "rollup": "^2.68.0",
@@ -85,7 +84,9 @@
         "@vivaxy/wxml": "^2.1.0",
         "micromatch": "^4.0.5",
         "postcss": "^8.4.7",
-        "webpack-sources": "^1.4.3",
         "windicss-webpack-plugin": "^1.7.2"
+    },
+    "peerDependencies": {
+        "webpack-sources": ">=1.4.3"
     }
 }
