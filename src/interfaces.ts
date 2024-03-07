@@ -3,7 +3,7 @@ import { TaroFramework } from './enum'
 
 export interface Options {
     enableRpx?: boolean,
-    designWidth?: number,
+    designWidth?: number | Function,
     utilitiesSettings?: {
         spaceBetweenItems?: string[],
         divideItems?: string[],

@@ -92,6 +92,8 @@ const valueConvertor = {
 
 function transformAllValue(raw: string, targets: number[], unit: SourceUnit, options: Options) {
 
+    const designWidth = options.designWidth instanceof Function ? options.designWidth():options.designWidth;
+
     for (const value of targets) {
 
         /**
@@ -99,7 +101,7 @@ function transformAllValue(raw: string, targets: number[], unit: SourceUnit, opt
          */
         const pattern = new RegExp((value + unit).replace(/^(-?)0(\.)/, '$10?$2').replace(/\./, '\\.'))
 
-        raw = raw.replace(pattern, valueConvertor[ unit ](value, options.designWidth) + TargerUnit.RPX)
+        raw = raw.replace(pattern, valueConvertor[ unit ](value, designWidth) + TargerUnit.RPX)
 
     }
 
